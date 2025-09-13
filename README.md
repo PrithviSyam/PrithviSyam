@@ -59,7 +59,6 @@ single index.html file.
       o Contains all meta tags and links to external assets (Tailwind CSS and Google Fonts). 
       o A single <style> tag holds all custom CSS, including @keyframes for all animations (name reveal, liquid effects, etc.) and utility styles for the glass UI and interactive elements. 
 
-      
 • <body> Section: 
 
     o <header>: The fixed navigation bar at the top of the page.<main class="flex">: This is the core container that enables the horizontal layout. All page sections are direct children of this element. 

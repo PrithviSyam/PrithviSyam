@@ -7,29 +7,175 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap'); /* Monospace font for terminal */
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap'); /* Font for Sea Chart */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap'); /* Futuristic font for Neon theme */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); /* 8-bit font for Retro theme */
         
+        /* --- THEME VARIABLES --- */
+        :root {
+            /* Shape & Font Variables */
+            --font-family-body: 'Inter', sans-serif;
+            --font-family-heading: 'Inter', sans-serif;
+            --border-radius-main: 0.5rem; /* Default rounded-lg */
+
+            /* Dark Theme Colors (Default) */
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: rgba(45, 55, 72, 0.3);
+            --bg-skill-header: rgba(30, 41, 59, 0.3);
+            --bg-skill-content: rgba(15, 23, 42, 0.5);
+            --bg-modal: rgba(15, 23, 42, 0.5);
+            --bg-header: rgba(15, 23, 42, 0.8);
+            --bg-terminal: rgba(15, 23, 42, 0.8);
+            --bg-terminal-header: rgba(30, 41, 59, 0.5);
+            --border-primary: #334155;
+            --border-secondary: rgba(51, 65, 85, 0.5);
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-muted: #64748B;
+            --text-accent: #A78BFA;
+            --text-accent-gradient: linear-gradient(to right, #8B5CF6, #6366F1);
+            --tag-bg: #334155;
+            --tag-bg-skill: rgba(51, 65, 85, 0.5);
+            --sea-chart-bg: url('https://www.transparenttextures.com/patterns/old-map.png'), linear-gradient(to bottom right, #1E293B, #0F172A);
+            --deep-sea-text: #6366F1;
+            --particle-color: rgba(167, 139, 250, 0.7);
+            --line-color: rgba(167, 139, 250, 0.1);
+            --star-color: rgba(241, 245, 249, 0.9);
+            --star-line-color: rgba(167, 139, 250, 0.25);
+            --wave-1: rgba(139, 92, 246, 0.7);
+            --wave-2: rgba(139, 92, 246, 0.5);
+            --wave-3: rgba(139, 92, 246, 0.3);
+            --wave-4: rgba(139, 92, 246, 0.2);
+            --glow-color: rgba(139, 92, 246, 0.5);
+            --social-icon-hover-bg: #334155;
+            --social-icon-hover-border: #8B5CF6;
+        }
+
+        html.light-mode {
+            --border-radius-main: 0.75rem; /* More rounded */
+
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --bg-card: rgba(226, 232, 240, 0.7);
+            --bg-skill-header: rgba(241, 245, 249, 0.7);
+            --bg-skill-content: rgba(226, 232, 240, 0.5);
+            --bg-modal: rgba(241, 245, 249, 0.5);
+            --bg-header: rgba(248, 250, 252, 0.8);
+            --bg-terminal: rgba(248, 250, 252, 0.9);
+            --bg-terminal-header: rgba(226, 232, 240, 0.8);
+            --border-primary: #E2E8F0;
+            --border-secondary: rgba(226, 232, 240, 0.8);
+            --text-primary: #0F172A;
+            --text-secondary: #334155;
+            --text-muted: #94A3B8;
+            --text-accent: #6D28D9;
+            --text-accent-gradient: linear-gradient(to right, #6D28D9, #4F46E5);
+            --tag-bg: #E2E8F0;
+            --tag-bg-skill: #E2E8F0;
+            --sea-chart-bg: url('https://www.transparenttextures.com/patterns/old-map.png'), linear-gradient(to bottom right, #E0E7FF, #FFFFFF);
+            --deep-sea-text: #4F46E5;
+            --particle-color: rgba(109, 40, 217, 0.7);
+            --line-color: rgba(109, 40, 217, 0.1);
+            --star-color: rgba(15, 23, 42, 0.9);
+            --star-line-color: rgba(109, 40, 217, 0.25);
+            --wave-1: rgba(109, 40, 217, 0.7);
+            --wave-2: rgba(109, 40, 217, 0.5);
+            --wave-3: rgba(109, 40, 217, 0.3);
+            --wave-4: rgba(109, 40, 217, 0.2);
+            --glow-color: rgba(109, 40, 217, 0.5);
+            --social-icon-hover-bg: #e2e8f0;
+            --social-icon-hover-border: #6D28D9;
+        }
+
+        html.neon-mode {
+            --font-family-body: 'Fira Code', monospace;
+            --font-family-heading: 'Orbitron', sans-serif;
+            --border-radius-main: 0.125rem; /* Sharp, angular */
+
+            --bg-primary: #0a100a;
+            --bg-secondary: #0a190a;
+            --bg-card: rgba(10, 30, 10, 0.3);
+            --bg-skill-header: rgba(20, 40, 20, 0.3);
+            --bg-skill-content: rgba(10, 20, 10, 0.5);
+            --bg-modal: rgba(10, 20, 10, 0.5);
+            --bg-header: rgba(10, 20, 10, 0.8);
+            --bg-terminal: rgba(5, 15, 5, 0.9);
+            --bg-terminal-header: rgba(20, 40, 20, 0.5);
+            --border-primary: #0f3d0f;
+            --border-secondary: rgba(20, 60, 20, 0.5);
+            --text-primary: #39ff14;
+            --text-secondary: #90ee90;
+            --text-muted: #3cb371;
+            --text-accent: #39ff14;
+            --text-accent-gradient: linear-gradient(to right, #39ff14, #adff2f);
+            --tag-bg: #104010;
+            --tag-bg-skill: rgba(20, 60, 20, 0.5);
+            --sea-chart-bg: url('https://www.transparenttextures.com/patterns/scan-lines.png'), linear-gradient(to bottom right, #0a190a, #000);
+            --deep-sea-text: #39ff14;
+            --particle-color: rgba(57, 255, 20, 0.7);
+            --line-color: rgba(57, 255, 20, 0.1);
+            --star-color: rgba(200, 255, 200, 0.9);
+            --star-line-color: rgba(57, 255, 20, 0.25);
+            --wave-1: rgba(57, 255, 20, 0.7);
+            --wave-2: rgba(57, 255, 20, 0.5);
+            --wave-3: rgba(57, 255, 20, 0.3);
+            --wave-4: rgba(57, 255, 20, 0.2);
+            --glow-color: rgba(57, 255, 20, 0.7);
+            --social-icon-hover-bg: #104010;
+            --social-icon-hover-border: #39ff14;
+        }
+
+        html.retro-mode {
+            --font-family-body: 'Press Start 2P', cursive;
+            --font-family-heading: 'Press Start 2P', cursive;
+            --border-radius-main: 0; /* Blocky */
+
+            --bg-primary: #000000;
+            --bg-secondary: #080808;
+            --bg-card: #111;
+            --bg-skill-header: #222;
+            --bg-skill-content: #111;
+            --bg-modal: rgba(0, 0, 0, 0.8);
+            --bg-header: rgba(0, 0, 0, 0.8);
+            --bg-terminal: #000;
+            --bg-terminal-header: #222;
+            --border-primary: #333;
+            --border-secondary: #222;
+            --text-primary: #FFFFFF;
+            --text-secondary: #AAAAAA;
+            --text-muted: #666666;
+            --text-accent: #FFD700; /* Gold */
+            --text-accent-gradient: linear-gradient(to right, #FFD700, #FFA500);
+            --tag-bg: #333;
+            --tag-bg-skill: #222;
+            --particle-color: #FFD700;
+            --star-color: #FFFFFF;
+            --glow-color: #FFA500;
+            --social-icon-hover-bg: #333;
+            --social-icon-hover-border: #FFD700;
+        }
+
         html {
             scroll-behavior: smooth;
         }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0F172A; /* Slate-900 */
-            overflow-x: hidden; /* Prevents horizontal scroll from blobs */
+            font-family: var(--font-family-body);
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
         }
+        html.neon-mode body, html.neon-mode .section-header, html.neon-mode h1, html.neon-mode h3, html.neon-mode .nav-link:hover, html.neon-mode .button-content, html.neon-mode .glitch-main {
+            text-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
+        }
+
         .bg-gradient-custom {
-            background-image: linear-gradient(to right, #8B5CF6, #6366F1);
+            background-image: var(--text-accent-gradient);
         }
         .glow-effect {
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5), 0 0 5px rgba(139, 92, 246, 0.3);
-        }
-        .gradient-blob {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.25;
-            z-index: -1;
+            box-shadow: 0 0 15px var(--glow-color), 0 0 5px var(--glow-color);
         }
 
         @keyframes fadeIn {
@@ -39,6 +185,17 @@
         .animate-fade-in {
              opacity: 0;
              animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* --- Scroll-Reveal Animation --- */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         /* -- Name Animation -- */
@@ -63,7 +220,7 @@
             bottom: -5px;
             left: 0;
             height: 2px;
-            background-image: linear-gradient(to right, #8B5CF6, #6366F1);
+            background-image: var(--text-accent-gradient);
             transform-origin: right;
             transform: scaleX(0);
             transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
@@ -74,17 +231,67 @@
             100% { background-position: -50% 50%; }
         }
 
+        /* --- Glitch Effect on Name --- */
+        .glitch-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .glitch-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            opacity: 0;
+        }
+        .glitch-container:hover .glitch-layer {
+            opacity: 1;
+        }
+        .glitch-container:hover .glitch-layer:nth-of-type(2) {
+            color: #ff00c1; /* Magenta */
+            animation: glitch-anim-1 0.4s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+        .glitch-container:hover .glitch-layer:nth-of-type(3) {
+            color: #00fff9; /* Cyan */
+            animation: glitch-anim-2 0.4s cubic-bezier(.25, .46, .45, .94) reverse both infinite;
+        }
+        html.retro-mode .glitch-container:hover .glitch-layer {
+            opacity: 0; /* Disable glitch in retro mode for font clarity */
+        }
+        @keyframes glitch-anim-1 {
+          0% { transform: translate(0); clip-path: inset(50% 0 30% 0); }
+          20% { transform: translate(-4px, 2px); clip-path: inset(10% 0 60% 0); }
+          40% { transform: translate(4px, -2px); clip-path: inset(80% 0 5% 0); }
+          60% { transform: translate(-4px, 2px); clip-path: inset(40% 0 40% 0); }
+          80% { transform: translate(4px, -2px); clip-path: inset(70% 0 10% 0); }
+          to { transform: translate(0); clip-path: inset(50% 0 30% 0); }
+        }
+        @keyframes glitch-anim-2 {
+          0% { transform: translate(0); clip-path: inset(70% 0 10% 0); }
+          20% { transform: translate(4px, -2px); clip-path: inset(30% 0 50% 0); }
+          40% { transform: translate(-4px, 2px); clip-path: inset(5% 0 80% 0); }
+          60% { transform: translate(4px, 2px); clip-path: inset(60% 0 20% 0); }
+          80% { transform: translate(-4px, -2px); clip-path: inset(25% 0 55% 0); }
+          to { transform: translate(0); clip-path: inset(70% 0 10% 0); }
+        }
+
         .nav-link {
             position: relative;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease-in-out;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
             box-shadow: inset 0 0 15px rgba(139, 92, 246, 0.25);
+            color: var(--text-secondary);
+            border-radius: var(--border-radius-main);
         }
+        html.neon-mode .nav-link {
+            box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.25);
+        }
+        .nav-link:hover { color: var(--text-primary); }
         .nav-link::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: linear-gradient(100deg, transparent 20%, rgba(139, 92, 246, 0.4) 50%, transparent 80%);
+            background-image: linear-gradient(100deg, transparent 20%, var(--wave-2) 50%, transparent 80%);
             background-size: 200% 100%;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
@@ -92,10 +299,7 @@
         }
         .nav-link:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-        }
-        .nav-link:hover::before {
-            opacity: 1;
+            box-shadow: 0 0 20px var(--glow-color);
         }
         .nav-link:active {
             transform: scale(0.98);
@@ -103,12 +307,9 @@
         
         .project-card {
             perspective: 1500px;
-            cursor: pointer;
             min-height: 250px;
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .project-card:hover {
-            transform: scale(1.03);
+            position: relative; /* For glare */
+            transform-style: preserve-3d;
         }
         .flip-card-inner {
             position: relative;
@@ -126,12 +327,17 @@
             height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            background-color: rgba(45, 55, 72, 0.3);
-            border-radius: 0.5rem;
-            border: 1px solid rgb(51 65 85);
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-primary);
             backdrop-filter: blur(16px);
             padding: 1.5rem;
             overflow: hidden;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            border-radius: var(--border-radius-main);
+        }
+        html.retro-mode .flip-card-front, html.retro-mode .flip-card-back {
+            backdrop-filter: none;
+            box-shadow: inset -4px -4px #000000, inset 4px 4px var(--border-primary);
         }
         .flip-card-front {
             display: flex;
@@ -143,7 +349,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: linear-gradient(100deg, transparent 20%, rgba(139, 92, 246, 0.4) 50%, transparent 80%);
+            background-image: linear-gradient(100deg, transparent 20%, var(--wave-2) 50%, transparent 80%);
             background-size: 200% 100%;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
@@ -154,6 +360,10 @@
         .project-card:hover .flip-card-back::before {
             opacity: 1;
         }
+        html.retro-mode .project-card:hover .flip-card-front::before,
+        html.retro-mode .project-card:hover .flip-card-back::before {
+            opacity: 0;
+        }
         .flip-card-front > *, .flip-card-back > * {
             position: relative;
             z-index: 1;
@@ -163,33 +373,60 @@
             text-align: left;
             overflow-y: auto;
         }
+        .project-title { color: var(--text-primary); }
+        .project-description { color: var(--text-secondary); }
+        .project-tag {
+            background-color: var(--tag-bg);
+            color: var(--text-accent);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            border-radius: var(--border-radius-main);
+        }
+        .publication-link { color: #8B5CF6; }
+        html.light-mode .publication-link { color: #6D28D9; }
+        html.neon-mode .publication-link { color: #adff2f; }
+
 
         .skill-header {
-            cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease-in-out;
-            box-shadow: inset 0 0 15px rgba(139, 92, 246, 0.25);
+            background-color: var(--bg-skill-header);
+            border: 1px solid var(--border-primary);
+            backdrop-filter: blur(16px);
+            transition: box-shadow 0.4s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            box-shadow: inset 0 0 15px var(--glow-color);
+            transform-style: preserve-3d;
+            border-radius: var(--border-radius-main);
+        }
+        html.retro-mode .skill-header {
+            backdrop-filter: none;
+            box-shadow: inset -4px -4px #000000, inset 4px 4px var(--border-primary);
         }
         .skill-header::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: linear-gradient(100deg, transparent 20%, rgba(139, 92, 246, 0.4) 50%, transparent 80%);
+            background-image: linear-gradient(100deg, transparent 20%, var(--wave-2) 50%, transparent 80%);
             background-size: 200% 100%;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
             animation: flowLiquid 3s linear infinite;
         }
         .skill-header:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+        html.retro-mode .skill-header:hover {
+             background-color: #222;
+             box-shadow: inset -4px -4px #000000, inset 4px 4px var(--border-primary);
         }
         .skill-header:hover::before {
             opacity: 1;
         }
+        html.retro-mode .skill-header:hover::before {
+            opacity: 0;
+        }
         .skill-header .indicator {
             transition: transform 0.4s ease-out;
+            color: var(--text-accent);
         }
         .skill-category.is-open .skill-header .indicator {
             transform: rotate(45deg);
@@ -198,9 +435,12 @@
             overflow: hidden;
             max-height: 0;
             opacity: 0;
-            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out, background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
             padding-top: 0;
             padding-bottom: 0;
+            background-color: var(--bg-skill-content);
+            border-bottom-left-radius: var(--border-radius-main);
+            border-bottom-right-radius: var(--border-radius-main);
         }
         .skill-category.is-open .skill-content {
             max-height: 500px;
@@ -208,7 +448,68 @@
             padding-top: 1.5rem;
             padding-bottom: 1.5rem;
         }
+        .skill-tag {
+            background-color: var(--tag-bg-skill);
+            color: var(--text-accent);
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            border-radius: var(--border-radius-main);
+        }
         
+        /* --- 3D Tilt Effect Glare --- */
+        .tilt-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.12), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            pointer-events: none; /* Make sure it doesn't block clicks */
+            border-radius: var(--border-radius-main);
+        }
+        html.light-mode .tilt-card::after {
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.4), transparent 50%);
+        }
+        html.neon-mode .tilt-card::after {
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(57, 255, 20, 0.15), transparent 40%);
+        }
+        html.retro-mode .tilt-card::after {
+            background: none;
+        }
+        .tilt-card:hover::after {
+            opacity: 1;
+        }
+
+        /* --- Animated Section Divider --- */
+        .section-divider-container {
+            width: 100%;
+            line-height: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        html.retro-mode .section-divider-container {
+            opacity: 0; height: 0;
+        }
+        .section-divider {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 60px;
+        }
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; fill: var(--wave-1); }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; fill: var(--wave-2); }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; fill: var(--wave-3); }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; fill: var(--wave-4); }
+
+        @keyframes move-forever {
+            0% { transform: translate3d(-90px,0,0); }
+            100% { transform: translate3d(85px,0,0); }
+        }
+
         @keyframes slideUp {
             from { transform: translateY(100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -221,32 +522,47 @@
         }
         #terminal {
             animation: slideUp 0.5s ease-out forwards;
+            background-color: var(--bg-terminal);
+            border: 1px solid var(--border-primary);
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            border-radius: var(--border-radius-main);
+        }
+        #terminal-header {
+            background-color: var(--bg-terminal-header);
+            border-bottom: 1px solid var(--border-primary);
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+        #terminal-body {
+             color: var(--text-secondary);
+             transition: color 0.3s ease-in-out;
         }
         #terminal-input {
             background: none;
             border: none;
             outline: none;
-            color: #E2E8F0;
+            color: var(--text-primary);
             width: 100%;
         }
         #terminal-cursor {
-            display: inline-block;
-            width: 10px;
-            height: 1.2em;
-            background-color: #E2E8F0;
-            margin-left: 2px;
+            background-color: var(--text-primary);
             animation: blink 1s step-end infinite;
         }
         .terminal-output-command {
-            color: #A78BFA;
+            color: var(--text-accent);
         }
 
         .modal-content {
             animation: fadeIn 0.3s ease-out;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            border-radius: var(--border-radius-main);
         }
         
         #sea-chart-container {
-             background-image: url('https://www.transparenttextures.com/patterns/old-map.png'), linear-gradient(to bottom right, #1E293B, #0F172A);
+             background-image: var(--sea-chart-bg);
+             transition: background-image 0.3s ease-in-out;
         }
         @keyframes wave-wash {
             0% { transform: translateY(100%) scaleX(1); }
@@ -257,8 +573,8 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 110%;
-            background: linear-gradient(to top, #0F172A, #1E3A8A);
-            border-top: 5px solid #6366F1;
+            background: linear-gradient(to top, var(--bg-primary), #1E3A8A);
+            border-top: 5px solid var(--text-accent);
             animation: wave-wash 1s ease-in-out forwards;
         }
         .cinzel-font {
@@ -269,75 +585,212 @@
              font-family: 'Fira Code', monospace;
              line-height: 1.1;
              font-size: 0.75rem;
-             color: #6366F1;
-             text-shadow: 0 0 5px rgba(99, 102, 241, 0.7);
+             color: var(--deep-sea-text);
+             text-shadow: 0 0 5px var(--deep-sea-text);
         }
         #deep-sea-overlay .captain-line-cursor {
             display: inline-block;
             width: 10px;
             height: 1.2em;
-            background-color: #A78BFA;
+            background-color: var(--text-accent);
             margin-left: 2px;
             animation: blink 1s step-end infinite;
         }
+
+        /* Generic Text and Header Colors */
+        .section-header, .skill-header h3, #hero h1, .glitch-container {
+            font-family: var(--font-family-heading);
+            color: var(--text-primary);
+        }
+        .section-paragraph { color: var(--text-secondary); }
+        #footer-text { color: var(--text-muted); }
+
+        /* --- Gooey Button Effect --- */
+        .gooey-button {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-main);
+            transition: border-radius 0.3s ease-in-out;
+        }
+        html.retro-mode .gooey-button {
+            overflow: visible;
+            border: 2px solid var(--border-primary);
+            box-shadow: inset -4px -4px #000000, inset 4px 4px var(--border-primary);
+        }
+        .gooey-button .blob {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--wave-2);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: transform 0.1s ease-out;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 0;
+        }
+        .gooey-button .button-content {
+            position: relative;
+            z-index: 1;
+        }
+        .gooey-button:hover .blob {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+         html.retro-mode .gooey-button .blob {
+            display: none;
+        }
+
+        /* --- Animated Social Icons --- */
+        .social-icon { color: var(--text-muted); transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, border-radius 0.3s ease-in-out; width: 48px; height: 48px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; background-color: transparent; border: 2px solid transparent;}
+        html.neon-mode .social-icon, html.retro-mode .social-icon {
+            border-radius: var(--border-radius-main);
+        }
+        .social-icon svg { transition: transform 0.3s ease-out; }
+        .social-icon.github-icon svg { transition: none; } /* Prevents conflict with the wave animation */
+        
+        @keyframes icon-wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+        .social-icon.github-icon.is-waving svg {
+            animation: icon-wave 0.5s ease-in-out;
+        }
+
+        .social-icon.linkedin-icon { position: relative; }
+        .social-icon.linkedin-icon::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: inherit; /* Follow parent's border-radius */
+            border: 2px solid var(--social-icon-hover-border);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: transform 0.4s, opacity 0.4s;
+        }
+        .social-icon.linkedin-icon:hover::before {
+            transform: scale(1.2);
+            opacity: 1;
+            transition: transform 0.4s cubic-bezier(0.2, 1.2, 0.8, 1), opacity 0.2s;
+        }
+        .social-icon.hackerrank-icon:hover svg, .social-icon.leetcode-icon:hover svg {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .social-icon:hover {
+            color: var(--text-primary);
+            background-color: var(--social-icon-hover-bg);
+            border-color: var(--social-icon-hover-border);
+        }
+
+        /* --- Flappy Bird Game --- */
+        #flappy-bird-container {
+            font-family: var(--font-family-heading);
+            background-color: var(--bg-modal);
+        }
+        #flappy-bird-canvas {
+            background-color: var(--bg-primary);
+            border: 2px solid var(--border-primary);
+            border-radius: var(--border-radius-main);
+        }
+        #flappy-bird-ui button {
+            background-image: var(--text-accent-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-main);
+            font-family: var(--font-family-body);
+        }
+        html.retro-mode #flappy-bird-ui button {
+            box-shadow: inset -2px -2px #000, inset 2px 2px var(--border-primary);
+            color: var(--text-primary);
+        }
+
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Decorative Blobs -->
-    <div class="gradient-blob" style="width: 500px; height: 500px; top: -150px; left: -150px; background-image: radial-gradient(circle, #8B5CF6, #0F172A);"></div>
-    <div class="gradient-blob" style="width: 400px; height: 400px; bottom: -100px; right: -100px; background-image: radial-gradient(circle, #6366F1, #0F172A);"></div>
+    <!-- SVG Gooey Filter Definition -->
+    <svg style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <filter id="gooey-filter">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -7" result="gooey" />
+                <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
 
+    <!-- Interactive Constellation Background -->
+    <canvas id="constellation-canvas" class="fixed top-0 left-0 w-full h-full z-[-1]"></canvas>
+    
+    <!-- Particle Interaction Layer -->
+    <canvas id="interaction-canvas" class="fixed top-0 left-0 w-full h-full z-40 pointer-events-none"></canvas>
 
     <!-- HEADER -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-sm">
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm" style="background-color: var(--bg-header);">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" id="easter-egg-trigger" class="text-xl font-bold bg-gradient-custom bg-clip-text text-transparent">
-                Prithvi Syam D S
+            <a href="#hero" id="easter-egg-trigger" class="glitch-container text-xl font-bold">
+                <span class="glitch-main bg-gradient-custom bg-clip-text text-transparent">Prithvi Syam D S</span>
+                <span class="glitch-layer" aria-hidden="true">Prithvi Syam D S</span>
+                <span class="glitch-layer" aria-hidden="true">Prithvi Syam D S</span>
             </a>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#about" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-lg">ABOUT</a>
-                <a href="#projects" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-lg">PROJECTS</a>
-                <a href="#skills" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-lg">SKILLS</a>
-                <a href="#contact" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-lg">CONTACT</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
+            <div class="flex items-center">
+                <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#about" class="nav-link px-4 py-2">ABOUT</a>
+                    <a href="#projects" class="nav-link px-4 py-2">PROJECTS</a>
+                    <a href="#skills" class="nav-link px-4 py-2">SKILLS</a>
+                    <a href="#contact" class="nav-link px-4 py-2">CONTACT</a>
+                </nav>
+                 <!-- Light/Dark Mode Toggle -->
+                <button id="theme-toggle-btn" class="ml-6 text-slate-400 hover:text-white transition-colors">
+                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-slate-300 ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900">
-            <a href="#about" class="block py-2 px-6 text-sm text-slate-300 hover:bg-slate-800">ABOUT</a>
-            <a href="#projects" class="block py-2 px-6 text-sm text-slate-300 hover:bg-slate-800">PROJECTS</a>
-            <a href="#skills" class="block py-2 px-6 text-sm text-slate-300 hover:bg-slate-800">SKILLS</a>
-            <a href="#contact" class="block py-2 px-6 text-sm text-slate-300 hover:bg-slate-800">CONTACT</a>
+        <div id="mobile-menu" class="hidden md:hidden" style="background-color: var(--bg-primary);">
+            <a href="#about" class="block py-2 px-6 text-sm hover:bg-slate-800 nav-link">ABOUT</a>
+            <a href="#projects" class="block py-2 px-6 text-sm hover:bg-slate-800 nav-link">PROJECTS</a>
+            <a href="#skills" class="block py-2 px-6 text-sm hover:bg-slate-800 nav-link">SKILLS</a>
+            <a href="#contact" class="block py-2 px-6 text-sm hover:bg-slate-800 nav-link">CONTACT</a>
         </div>
     </header>
 
     <main>
         <!-- HERO SECTION -->
-        <section id="hero" class="min-h-screen flex items-center bg-slate-900 py-24">
+        <section id="hero" class="min-h-screen flex items-center py-24">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
                     <span class="intro-text animate-fade-in" style="animation-delay: 200ms;">Hi, I’m </span>
                     <span id="animated-name-wrapper" class="inline-block relative">
                         <span id="animated-name" class="bg-gradient-custom bg-clip-text text-transparent">Prithvi Syam D S</span><span id="underline-dot" class="bg-gradient-custom bg-clip-text text-transparent">.</span>
                     </span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-8 animate-fade-in" style="animation-delay: 400ms;">
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 animate-fade-in section-paragraph" style="animation-delay: 400ms;">
                     — a tech enthusiast working at the intersection of Data Science, ML, Deep Learning, and DevOps. Right now, I’m also diving into Cybersecurity, exploring how it strengthens the future of intelligent systems.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in" style="animation-delay: 600ms;">
-                    <a href="#projects" id="see-my-work-btn" class="bg-gradient-custom text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity duration-300 inline-flex items-center justify-center gap-2 glow-effect text-lg">
-                        <span id="rocket-emoji">🚀</span> See My Work
+                    <a href="#projects" id="see-my-work-btn" class="gooey-button bg-gradient-custom text-white font-bold py-3 px-8 hover:opacity-90 transition-opacity duration-300 inline-flex items-center justify-center gap-2 glow-effect text-lg" style="filter: url('#gooey-filter');">
+                        <span class="button-content"><span id="rocket-emoji">🚀</span> See My Work</span>
+                        <span class="blob"></span><span class="blob"></span><span class="blob"></span>
                     </a>
-                    <div class="flex items-center gap-4 mt-4 sm:mt-0">
-                        <a href="https://drive.google.com/file/d/1oor98F54B-sBro-02gybmBgaLJ9SQcKa/view?usp=sharing" target="_blank" class="text-slate-300 hover:text-white transition-colors duration-300 font-medium">Download Resume</a>
-                        <span class="text-slate-500">|</span>
-                        <a href="#contact" class="text-slate-300 hover:text-white transition-colors duration-300 font-medium">Get in Touch</a>
-                    </div>
+                    <a href="https://drive.google.com/file/d/1oor98F54B-sBro-02gybmBgaLJ9SQcKa/view?usp=sharing" target="_blank" class="gooey-button bg-gradient-custom text-white font-bold py-3 px-8 hover:opacity-90 transition-opacity duration-300 inline-flex items-center justify-center gap-2 glow-effect text-lg" style="filter: url('#gooey-filter');">
+                        <span class="button-content">Download Resume</span>
+                        <span class="blob"></span><span class="blob"></span><span class="blob"></span>
+                    </a>
+                    <a href="#contact" class="gooey-button bg-gradient-custom text-white font-bold py-3 px-8 hover:opacity-90 transition-opacity duration-300 inline-flex items-center justify-center gap-2 glow-effect text-lg" style="filter: url('#gooey-filter');">
+                        <span class="button-content">Get in Touch</span>
+                        <span class="blob"></span><span class="blob"></span><span class="blob"></span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -345,406 +798,678 @@
         <!-- ABOUT ME SECTION -->
         <section id="about" class="py-20 md:py-24">
             <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-3xl font-bold text-center text-slate-100 uppercase">About Me</h2>
-                 <div class="w-24 h-1 bg-gradient-custom mx-auto mt-2 mb-12 rounded-full"></div>
-                <p class="text-lg text-slate-300 max-w-3xl mx-auto">
+                 <h2 class="text-3xl font-bold text-center uppercase section-header scroll-reveal">About Me</h2>
+                 <div class="w-24 h-1 bg-gradient-custom mx-auto mt-2 mb-12 rounded-full scroll-reveal" style="transition-delay: 100ms;"></div>
+                <p class="text-lg max-w-3xl mx-auto section-paragraph scroll-reveal" style="transition-delay: 200ms;">
                     I build intelligent systems. With a foundation in machine learning and data science, I focus on solving complex problems by turning raw data into actionable insights. My work involves everything from developing predictive models to deploying cloud-based applications. I'm always learning and am currently deepening my knowledge in cybersecurity to create more secure and robust AI solutions.
                 </p>
             </div>
         </section>
 
+        <!-- Animated Wave Divider -->
+        <div class="section-divider-container scroll-reveal" style="transition-delay: 400ms;">
+            <svg class="section-divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" /><use xlink:href="#gentle-wave" x="48" y="3" /><use xlink:href="#gentle-wave" x="48" y="5" /><use xlink:href="#gentle-wave" x="48" y="7" />
+                </g>
+            </svg>
+        </div>
+
         <!-- PROJECTS SECTION -->
         <section id="projects" class="py-20 md:py-24">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center text-slate-100 uppercase">My Projects</h2>
-                <div class="w-24 h-1 bg-gradient-custom mx-auto mt-2 mb-12 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-center uppercase section-header scroll-reveal">My Projects</h2>
+                <div class="w-24 h-1 bg-gradient-custom mx-auto mt-2 mb-12 rounded-full scroll-reveal" style="transition-delay: 100ms;"></div>
 
                 <!-- Project Grid -->
                 <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-
-                    <!-- ======================= -->
-                    <!--      PROJECT 1 START      -->
-                    <!-- ======================= -->
-                    <div class="project-card">
+                    <!-- Project cards will be here -->
+                    <div class="project-card scroll-reveal tilt-card">
                         <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3 class="project-title text-xl font-bold text-slate-100">Smart HVAC System with Predictive Analytics</h3>
-                            </div>
+                            <div class="flip-card-front"><h3 class="project-title text-xl font-bold">Smart HVAC System with Predictive Analytics</h3></div>
                             <div class="flip-card-back">
-                                <p class="project-description text-slate-300 mb-4 text-sm">Designed an IoT-based smart HVAC system that predicts and adjusts heating, ventilation, and air conditioning settings based on occupancy patterns and weather data. This project solved the problem of energy inefficiency in large buildings, resulting in optimized energy use and enhanced occupant comfort.</p>
+                                <p class="project-description mb-4 text-sm">Designed an IoT-based smart HVAC system that predicts and adjusts settings based on occupancy and weather data, resulting in optimized energy use.</p>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Python</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Machine Learning (Predictive Models)</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Pandas</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Scikit-learn</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">IoT Sensors</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Google Colab</span>
+                                    <span class="project-tag text-xs font-semibold px-2 py-1">Python</span><span class="project-tag text-xs font-semibold px-2 py-1">Machine Learning</span><span class="project-tag text-xs font-semibold px-2 py-1">Pandas</span><span class="project-tag text-xs font-semibold px-2 py-1">Scikit-learn</span><span class="project-tag text-xs font-semibold px-2 py-1">IoT</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- ======================= -->
-                    <!--      PROJECT 2 START      -->
-                    <!-- ======================= -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal tilt-card" style="transition-delay: 150ms;">
                         <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3 class="project-title text-xl font-bold text-slate-100">AI Chatbot for Banking Transactions</h3>
-                            </div>
+                            <div class="flip-card-front"><h3 class="project-title text-xl font-bold">AI Chatbot for Banking Transactions</h3></div>
                             <div class="flip-card-back">
-                                <p class="project-description text-slate-300 mb-4 text-sm">Built and deployed a secure AI-driven banking assistant capable of handling 500+ simulated transactions with real-time fraud detection. The chatbot reduced manual intervention by 40% using AWS services.</p>
+                                <p class="project-description mb-4 text-sm">Built a secure AI banking assistant for 500+ transactions with real-time fraud detection, reducing manual intervention by 40% using AWS services.</p>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">AWS Bedrock</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Amazon Lex</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">AWS Lambda</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Python</span>
+                                    <span class="project-tag text-xs font-semibold px-2 py-1">AWS Bedrock</span><span class="project-tag text-xs font-semibold px-2 py-1">Amazon Lex</span><span class="project-tag text-xs font-semibold px-2 py-1">AWS Lambda</span><span class="project-tag text-xs font-semibold px-2 py-1">Python</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- ======================= -->
-                    <!--      PROJECT 3 START      -->
-                    <!-- ======================= -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal tilt-card" style="transition-delay: 200ms;">
                         <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3 class="project-title text-xl font-bold text-slate-100">SynthART: Synergizing Human and AI Creativity in Visual Expression</h3>
-                            </div>
+                            <div class="flip-card-front"><h3 class="project-title text-xl font-bold">SynthART: Synergizing Human and AI Creativity</h3></div>
                             <div class="flip-card-back">
-                                <p class="project-description text-slate-300 mb-4 text-sm">Developed a GAN/VAE-powered platform enabling 1,000+ AI-assisted image generations. The system enhanced user creativity and engagement by blending human input with generative AI models.</p>
+                                <p class="project-description mb-4 text-sm">Developed a GAN/VAE-powered platform for 1,000+ AI-assisted image generations, enhancing user creativity by blending human input with generative AI.</p>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Python</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">TensorFlow</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">PyTorch</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">GANs</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">VAEs</span>
+                                    <span class="project-tag text-xs font-semibold px-2 py-1">Python</span><span class="project-tag text-xs font-semibold px-2 py-1">TensorFlow</span><span class="project-tag text-xs font-semibold px-2 py-1">PyTorch</span><span class="project-tag text-xs font-semibold px-2 py-1">GANs</span><span class="project-tag text-xs font-semibold px-2 py-1">VAEs</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- ======================= -->
-                    <!--      PROJECT 4 START      -->
-                    <!-- ======================= -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal tilt-card" style="transition-delay: 250ms;">
                         <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3 class="project-title text-xl font-bold text-slate-100">Unveiling Delta Airline Experiences with Topic Modeling & Traveler Persona Classification</h3>
-                            </div>
+                            <div class="flip-card-front"><h3 class="project-title text-xl font-bold">Delta Airline Experiences with Topic Modeling</h3></div>
                             <div class="flip-card-back">
-                                <p class="project-description text-slate-300 mb-4 text-sm">Processed 50K+ airline reviews with topic modeling and BERT-based classification. Improved sentiment accuracy by 18% over baseline, helping uncover hidden traveler personas and insights.</p>
+                                <p class="project-description mb-4 text-sm">Processed 50K+ airline reviews with topic modeling and BERT, improving sentiment accuracy by 18% to uncover hidden traveler personas.</p>
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Python</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">BERT</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">NLP</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Topic Modeling</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Pandas</span>
+                                    <span class="project-tag text-xs font-semibold px-2 py-1">Python</span><span class="project-tag text-xs font-semibold px-2 py-1">BERT</span><span class="project-tag text-xs font-semibold px-2 py-1">NLP</span><span class="project-tag text-xs font-semibold px-2 py-1">Topic Modeling</span>
                                 </div>
-                                <a href="https://ieeexplore.ieee.org/document/10924125" target="_blank" rel="noopener noreferrer" class="text-violet-400 font-semibold hover:underline">
-                                    View Publication &rarr;
-                                </a>
+                                <a href="https://ieeexplore.ieee.org/document/10924125" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline publication-link">View Publication &rarr;</a>
                             </div>
                         </div>
                     </div>
-
-                     <!-- ======================= -->
-                    <!--      PROJECT 5 START      -->
-                    <!-- ======================= -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal tilt-card" style="transition-delay: 300ms;">
                         <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3 class="project-title text-xl font-bold text-slate-100">Predictive Analytics in Anime Scores with Explainable AI</h3>
-                            </div>
+                            <div class="flip-card-front"><h3 class="project-title text-xl font-bold">Predictive Analytics in Anime Scores with XAI</h3></div>
                             <div class="flip-card-back">
-                                <p class="project-description text-slate-300 mb-4 text-sm">Benchmarked 10 regression models to predict anime ratings. Incorporated SHAP and LIME for explainability, reducing RMSE by 12% and improving transparency in model decision-making.</p>
+                                <p class="project-description mb-4 text-sm">Benchmarked 10 regression models to predict anime ratings. Incorporated SHAP and LIME for explainability, reducing RMSE by 12%.</p>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Python</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Scikit-learn</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">SHAP</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">LIME</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Regression Models</span>
+                                    <span class="project-tag text-xs font-semibold px-2 py-1">Python</span><span class="project-tag text-xs font-semibold px-2 py-1">Scikit-learn</span><span class="project-tag text-xs font-semibold px-2 py-1">SHAP</span><span class="project-tag text-xs font-semibold px-2 py-1">LIME</span><span class="project-tag text-xs font-semibold px-2 py-1">Regression</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- ======================= -->
-                    <!--      PROJECT 6 START      -->
-                    <!-- ======================= -->
-                    <div class="project-card">
+                    <div class="project-card scroll-reveal tilt-card" style="transition-delay: 350ms;">
                         <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3 class="project-title text-xl font-bold text-slate-100">Development of GUI & Slot Booking System for Marine Vessel Charging</h3>
-                            </div>
+                            <div class="flip-card-front"><h3 class="project-title text-xl font-bold">GUI & Slot Booking for Marine Vessel Charging</h3></div>
                             <div class="flip-card-back">
-                                <p class="project-description text-slate-300 mb-4 text-sm">Created a GUI-based scheduling platform for charging electric marine vessels. The system reduced booking conflicts by 70% during pilot testing and streamlined slot management.</p>
+                                <p class="project-description mb-4 text-sm">Created a GUI scheduling platform for charging electric marine vessels, reducing booking conflicts by 70% and streamlining slot management.</p>
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Python</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">Tkinter (GUI)</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">SQL</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">CSS</span>
-                                    <span class="bg-slate-700 text-xs font-semibold text-violet-300 px-2 py-1 rounded">PHP</span>
+                                    <span class="project-tag text-xs font-semibold px-2 py-1">Python</span><span class="project-tag text-xs font-semibold px-2 py-1">Tkinter</span><span class="project-tag text-xs font-semibold px-2 py-1">SQL</span><span class="project-tag text-xs font-semibold px-2 py-1">CSS</span><span class="project-tag text-xs font-semibold px-2 py-1">PHP</span>
                                 </div>
-                                 <a href="https://ieeexplore.ieee.org/document/10423450" target="_blank" rel="noopener noreferrer" class="text-violet-400 font-semibold hover:underline">
-                                    View Publication &rarr;
-                                 </a>
+                                <a href="https://ieeexplore.ieee.org/document/10423450" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline publication-link">View Publication &rarr;</a>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
+        <!-- Animated Wave Divider -->
+        <div class="section-divider-container scroll-reveal" style="transition-delay: 400ms; transform: rotate(180deg);">
+             <svg class="section-divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs><path id="gentle-wave-2" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave-2" x="48" y="0" /><use xlink:href="#gentle-wave-2" x="48" y="3" /><use xlink:href="#gentle-wave-2" x="48" y="5" /><use xlink:href="#gentle-wave-2" x="48" y="7" />
+                </g>
+            </svg>
+        </div>
 
         <!-- SKILLS SECTION -->
         <section id="skills" class="py-20 md:py-24">
              <div class="container mx-auto px-6">
-                 <h2 class="text-3xl font-bold text-center text-slate-100 uppercase">My Technical Toolkit</h2>
-                 <div class="w-24 h-1 bg-gradient-custom mx-auto mt-2 mb-12 rounded-full"></div>
+                 <h2 class="text-3xl font-bold text-center uppercase section-header scroll-reveal">My Technical Toolkit</h2>
+                 <div class="w-24 h-1 bg-gradient-custom mx-auto mt-2 mb-12 rounded-full scroll-reveal" style="transition-delay: 100ms;"></div>
 
                  <div class="max-w-4xl mx-auto space-y-8">
-                     
-                    <!-- Skill Category 1 -->
-                    <div class="skill-category">
-                        <div class="skill-header bg-slate-800/30 rounded-lg p-4 border border-slate-700 backdrop-blur-lg flex justify-between items-center w-full md:w-3/4 mx-auto">
-                            <h3 class="text-xl font-bold text-slate-200">Programming & Frameworks</h3>
-                            <div class="indicator text-violet-400 text-2xl font-light">+</div>
+                    <!-- Skill categories will be here -->
+                    <div class="skill-category scroll-reveal">
+                        <div class="skill-header p-4 flex justify-between items-center w-full md:w-3/4 mx-auto tilt-card">
+                            <h3 class="text-xl font-bold">Programming & Frameworks</h3>
+                            <div class="indicator text-2xl font-light">+</div>
                         </div>
-                        <div class="skill-content bg-slate-900/50 rounded-b-lg">
+                        <div class="skill-content">
                             <div class="flex flex-wrap justify-center gap-3 p-6">
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Python</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">TensorFlow</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">PyTorch</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Hugging Face</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Scikit-learn</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Pandas</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">NumPy</span>
+                                <span class="skill-tag font-medium py-2 px-4">Python</span><span class="skill-tag font-medium py-2 px-4">TensorFlow</span><span class="skill-tag font-medium py-2 px-4">PyTorch</span><span class="skill-tag font-medium py-2 px-4">Hugging Face</span><span class="skill-tag font-medium py-2 px-4">Scikit-learn</span>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Skill Category 2 -->
-                    <div class="skill-category">
-                        <div class="skill-header bg-slate-800/30 rounded-lg p-4 border border-slate-700 backdrop-blur-lg flex justify-between items-center w-full md:w-3/4 mx-auto">
-                            <h3 class="text-xl font-bold text-slate-200">Machine Learning & AI</h3>
-                            <div class="indicator text-violet-400 text-2xl font-light">+</div>
+                     <div class="skill-category scroll-reveal" style="transition-delay: 150ms;">
+                        <div class="skill-header p-4 flex justify-between items-center w-full md:w-3/4 mx-auto tilt-card">
+                            <h3 class="text-xl font-bold">Machine Learning & AI</h3>
+                            <div class="indicator text-2xl font-light">+</div>
                         </div>
-                        <div class="skill-content bg-slate-900/50 rounded-b-lg">
+                        <div class="skill-content">
                            <div class="flex flex-wrap justify-center gap-3 p-6">
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Supervised & Unsupervised Learning</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Deep Learning</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">NLP</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Generative AI</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">AI Agents</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Predictive Analytics</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Explainable AI</span>
+                               <span class="skill-tag font-medium py-2 px-4">Deep Learning</span><span class="skill-tag font-medium py-2 px-4">NLP</span><span class="skill-tag font-medium py-2 px-4">Generative AI</span><span class="skill-tag font-medium py-2 px-4">Predictive Analytics</span><span class="skill-tag font-medium py-2 px-4">Explainable AI</span>
                            </div>
                         </div>
                     </div>
-
-                    <!-- Skill Category 3 -->
-                    <div class="skill-category">
-                        <div class="skill-header bg-slate-800/30 rounded-lg p-4 border border-slate-700 backdrop-blur-lg flex justify-between items-center w-full md:w-3/4 mx-auto">
-                            <h3 class="text-xl font-bold text-slate-200">APIs & Deployment</h3>
-                           <div class="indicator text-violet-400 text-2xl font-light">+</div>
+                     <div class="skill-category scroll-reveal" style="transition-delay: 200ms;">
+                        <div class="skill-header p-4 flex justify-between items-center w-full md:w-3/4 mx-auto tilt-card">
+                            <h3 class="text-xl font-bold">APIs & Deployment</h3>
+                           <div class="indicator text-2xl font-light">+</div>
                         </div>
-                        <div class="skill-content bg-slate-900/50 rounded-b-lg">
+                        <div class="skill-content">
                             <div class="flex flex-wrap justify-center gap-3 p-6">
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">REST API Development</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">AWS Services</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Docker</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Git/GitHub</span>
+                                <span class="skill-tag font-medium py-2 px-4">REST API</span><span class="skill-tag font-medium py-2 px-4">AWS Services</span><span class="skill-tag font-medium py-2 px-4">Docker</span><span class="skill-tag font-medium py-2 px-4">Git/GitHub</span>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Skill Category 4 -->
-                     <div class="skill-category">
-                        <div class="skill-header bg-slate-800/30 rounded-lg p-4 border border-slate-700 backdrop-blur-lg flex justify-between items-center w-full md:w-3/4 mx-auto">
-                            <h3 class="text-xl font-bold text-slate-200">Data Engineering & Visualization</h3>
-                            <div class="indicator text-violet-400 text-2xl font-light">+</div>
+                    <div class="skill-category scroll-reveal" style="transition-delay: 250ms;">
+                        <div class="skill-header p-4 flex justify-between items-center w-full md:w-3/4 mx-auto tilt-card">
+                            <h3 class="text-xl font-bold">Cybersecurity Fundamentals</h3>
+                            <div class="indicator text-2xl font-light">+</div>
                         </div>
-                        <div class="skill-content bg-slate-900/50 rounded-b-lg">
-                            <div class="flex flex-wrap justify-center gap-3 p-6">
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Data Pipelines</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">SQL</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Matplotlib</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Seaborn</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Skill Category 5 -->
-                    <div class="skill-category">
-                        <div class="skill-header bg-slate-800/30 rounded-lg p-4 border border-slate-700 backdrop-blur-lg flex justify-between items-center w-full md:w-3/4 mx-auto">
-                            <h3 class="text-xl font-bold text-slate-200">Cybersecurity Fundamentals</h3>
-                            <div class="indicator text-violet-400 text-2xl font-light">+</div>
-                        </div>
-                        <div class="skill-content bg-slate-900/50 rounded-b-lg">
+                        <div class="skill-content">
                            <div class="flex flex-wrap justify-center gap-3 p-6">
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Network Security</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Threat Analysis</span>
-                                <span class="bg-slate-700/50 text-violet-300 font-medium py-2 px-4 rounded-lg">Cryptography</span>
+                                <span class="skill-tag font-medium py-2 px-4">Network Security</span><span class="skill-tag font-medium py-2 px-4">Threat Analysis</span><span class="skill-tag font-medium py-2 px-4">Cryptography</span>
                            </div>
                         </div>
                     </div>
-
                  </div>
              </div>
         </section>
 
+        <!-- Animated Wave Divider -->
+        <div class="section-divider-container scroll-reveal" style="transition-delay: 400ms;">
+            <svg class="section-divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs><path id="gentle-wave-3" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave-3" x="48" y="0" /><use xlink:href="#gentle-wave-3" x="48" y="3" /><use xlink:href="#gentle-wave-3" x="48" y="5" /><use xlink:href="#gentle-wave-3" x="48" y="7" />
+                </g>
+            </svg>
+        </div>
+
+
         <!-- CONTACT SECTION -->
         <section id="contact" class="py-20 md:py-24">
-             <div class="text-center max-w-xl mx-auto">
-                 <h2 class="text-3xl font-bold text-center text-slate-100 uppercase">Get In Touch</h2>
-                 <div class="w-24 h-1 bg-gradient-custom mx-auto mt-2 mb-12 rounded-full"></div>
-                 <p class="text-lg mb-12 text-slate-300">
-                    I am actively seeking new opportunities in Software Development, AI/ML, and Cybersecurity roles where I can apply my skills to solve challenging problems. If you have a project or a role in mind, I would be happy to connect.
+             <div class="text-center max-w-xl mx-auto px-6">
+                 <h2 class="text-3xl font-bold text-center uppercase section-header scroll-reveal">Get In Touch</h2>
+                 <div class="w-24 h-1 bg-gradient-custom mx-auto mt-2 mb-12 rounded-full scroll-reveal" style="transition-delay: 100ms;"></div>
+                 <p class="text-lg mb-12 section-paragraph scroll-reveal" style="transition-delay: 200ms;">
+                    I am actively seeking new opportunities in Software Development, AI/ML, and Cybersecurity roles. If you have a project or a role in mind, I would be happy to connect.
                  </p>
-                 <button id="open-contact-modal-btn" class="bg-gradient-custom text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity duration-300 inline-block glow-effect">
-                    Say Hello
+                 <button id="open-contact-modal-btn" class="gooey-button bg-gradient-custom text-white font-bold py-3 px-8 hover:opacity-90 transition-opacity duration-300 inline-block glow-effect scroll-reveal" style="transition-delay: 300ms; filter: url('#gooey-filter');">
+                    <span class="button-content">Say Hello</span>
+                    <span class="blob"></span><span class="blob"></span><span class="blob"></span>
                  </button>
-                 <div class="flex justify-center space-x-6 mt-10">
-                    <a href="https://github.com/PrithviSyam" target="_blank" class="text-slate-400 hover:text-white transition-colors duration-300">
-                        <!-- GitHub Icon SVG -->
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/prithvisyamds/" target="_blank" class="text-slate-400 hover:text-white transition-colors duration-300">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                    </a>
-                    <a href="https://www.hackerrank.com/profile/prithvisyamds" target="_blank" class="text-slate-400 hover:text-white transition-colors duration-300">
-                        <!-- HackerRank Icon SVG -->
-                        <svg class="w-8 h-8" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M15.42 6.64h-2.18v4.34h2.18v-4.34zm-4.35 0H8.89v10.72h2.18V6.64zm7.04-2.85a1.4 1.4 0 00-1.4-1.4H7.29a1.4 1.4 0 00-1.4 1.4v13.72a1.4 1.4 0 001.4 1.4h10.42a1.4 1.4 0 001.4-1.4V3.79zM24 12.18a12 12 0 10-12 12 12 12 0 0012-12z"/></svg>
-                    </a>
-                    <a href="https://leetcode.com/u/prithvisyamds/" target="_blank" class="text-slate-400 hover:text-white transition-colors duration-300">
-                        <!-- LeetCode Icon SVG -->
-                        <svg class="w-8 h-8" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M21.6 14.8c-.2-1.5-1.1-2.8-2.5-3.3-1.4-.6-3-1.1-3.3-2.6-.3-1.3.4-2.6 1.5-3.3 1.1-.7 2.4-.7 3.5 0 .2.1.4.3.6.5l-1.4 2.1c-.1-.1-.3-.2-.4-.2-.5-.3-1.1-.2-1.5.2-.4.4-.5 1-.2 1.5.3.5.8.9 1.4 1.1.8.3 1.6.6 2.2 1.2.6.6.9 1.4.7 2.2-.2.8-.7 1.5-1.4 1.9-.7.4-1.5.6-2.3.5-1.1-.2-2.1-.7-2.9-1.4l1.3-2.1c.5.5 1.1.9 1.8.9.7 0 1.4-.4 1.6-1.1zM11.9 4c-1.1 0-2.2.5-2.9 1.4l1.3 2.1c.5-.5 1.1-.9 1.8-.9.7 0 1.4.4 1.6 1.1.2 1.5-1.1 2.8-2.5 3.3-1.4.6-3 1.1-3.3 2.6-.3-1.3.4-2.6 1.5-3.3 1.1.7 2.4.7 3.5 0 .2-.1.4-.3.6-.5l-1.4-2.1c-.1.1-.3.2-.4.2-.5.3-1.1.2-1.5-.2-.4-.4-.5-1-.2-1.5s.8-.9 1.4-1.1c.8-.3 1.6-.6 2.2-1.2.6-.6.9-1.4.7-2.2-.2-.8-.7-1.5-1.4-1.9-.7-.4-1.5-.6-2.3-.5C13 4 12.5 4 11.9 4z"/></svg>
-                    </a>
+                 <div class="flex justify-center space-x-6 mt-10 scroll-reveal" style="transition-delay: 400ms;">
+                    <a href="https://github.com/PrithviSyam" target="_blank" class="social-icon github-icon"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg></a>
+                    <a href="https://www.linkedin.com/in/prithvisyamds/" target="_blank" class="social-icon linkedin-icon"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg></a>
+                    <a href="https://www.hackerrank.com/profile/prithvisyamds" target="_blank" class="social-icon hackerrank-icon"><svg class="w-8 h-8" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M15.42 6.64h-2.18v4.34h2.18v-4.34zm-4.35 0H8.89v10.72h2.18V6.64zm7.04-2.85a1.4 1.4 0 00-1.4-1.4H7.29a1.4 1.4 0 00-1.4 1.4v13.72a1.4 1.4 0 001.4 1.4h10.42a1.4 1.4 0 001.4-1.4V3.79zM24 12.18a12 12 0 10-12 12 12 12 0 0012-12z"/></svg></a>
+                    <a href="https://leetcode.com/u/prithvisyamds/" target="_blank" class="social-icon leetcode-icon"><svg class="w-8 h-8" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M21.6 14.8c-.2-1.5-1.1-2.8-2.5-3.3-1.4-.6-3-1.1-3.3-2.6-.3-1.3.4-2.6 1.5-3.3 1.1-.7 2.4-.7 3.5 0 .2.1.4.3.6.5l-1.4 2.1c-.1-.1-.3-.2-.4-.2-.5-.3-1.1-.2-1.5.2-.4.4-.5 1-.2 1.5.3.5.8.9 1.4 1.1.8.3 1.6.6 2.2 1.2.6.6.9 1.4.7 2.2-.2.8-.7 1.5-1.4 1.9-.7.4-1.5.6-2.3.5-1.1-.2-2.1-.7-2.9-1.4l1.3-2.1c.5.5 1.1.9 1.8.9.7 0 1.4-.4 1.6-1.1zM11.9 4c-1.1 0-2.2.5-2.9 1.4l1.3 2.1c.5-.5 1.1-.9 1.8-.9.7 0 1.4.4 1.6 1.1.2 1.5-1.1 2.8-2.5 3.3-1.4.6-3 1.1-3.3 2.6-.3-1.3.4-2.6 1.5-3.3 1.1.7 2.4.7 3.5 0 .2-.1.4-.3.6-.5l-1.4-2.1c-.1.1-.3.2-.4.2-.5.3-1.1.2-1.5-.2-.4-.4-.5-1-.2-1.5s.8-.9 1.4-1.1c.8-.3 1.6-.6 2.2-1.2.6-.6.9-1.4.7-2.2-.2-.8-.7-1.5-1.4-1.9-.7-.4-1.5-.6-2.3-.5C13 4 12.5 4 11.9 4z"/></svg></a>
                  </div>
-                 <footer class="mt-12 pt-6 border-t border-slate-800/50 text-center text-sm text-slate-500">
-                    <p id="footer-trigger" class="cursor-pointer">Designed & Built by Prithvi Syam D S</p>
+                 <footer class="mt-12 pt-6 border-t border-slate-800/50 text-center text-sm scroll-reveal" style="transition-delay: 500ms;">
+                    <p id="footer-trigger" class="cursor-pointer" style="color: var(--text-muted);">Designed & Built by Prithvi Syam D S</p>
                 </footer>
              </div>
         </section>
     </main>
 
     <!-- CONTACT MODAL -->
-    <div id="contact-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
-        <div class="modal-content bg-slate-800/50 rounded-lg p-8 border border-slate-700 backdrop-blur-lg w-full max-w-md relative text-white">
+    <div id="contact-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm" style="background-color: var(--bg-modal)">
+        <div class="modal-content p-8 w-full max-w-md relative">
             <button id="close-contact-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">&times;</button>
             <h2 class="text-2xl font-bold text-center mb-6">Contact Details</h2>
             <div class="space-y-4 text-lg">
-                <div class="flex items-center gap-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                    <a href="mailto:prithvisyamds@gmail.com" class="hover:underline">prithvisyamds@gmail.com</a>
-                </div>
-                <div class="flex items-center gap-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                    <span>9383424674</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                    <span>Thiruvananthapuram, Kerala, India</span>
-                </div>
+                <div class="flex items-center gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg><a href="mailto:prithvisyamds@gmail.com" class="hover:underline">prithvisyamds@gmail.com</a></div>
+                <div class="flex items-center gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg><span>9383424674</span></div>
+                <div class="flex items-center gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg><span>Thiruvananthapuram, Kerala, India</span></div>
             </div>
         </div>
     </div>
 
     <!-- EASTER EGG: TERMINAL -->
     <div id="terminal-container" class="fixed inset-0 z-[70] hidden p-4 sm:p-8">
-        <div id="terminal" class="w-full h-full bg-slate-900/80 backdrop-blur-lg rounded-lg shadow-2xl flex flex-col overflow-hidden border border-slate-700">
-            <!-- Terminal Header -->
-            <div id="terminal-header" class="flex items-center p-3 bg-slate-800/50 border-b border-slate-700 cursor-move">
-                <div class="flex space-x-2">
-                    <div id="terminal-close" class="w-3 h-3 bg-red-500 rounded-full cursor-pointer hover:bg-red-400"></div>
-                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-                <p class="text-center text-sm text-slate-400 flex-grow">prithvi@portfolio: ~</p>
-            </div>
-            <!-- Terminal Body -->
-            <div id="terminal-body" class="p-4 overflow-y-auto flex-grow text-slate-300 text-sm" onclick="document.getElementById('terminal-input').focus()">
-                <div id="terminal-output"></div>
-                <div class="flex">
-                    <span class="text-violet-400">guest@prithvi.dev:~$</span>
-                    <input type="text" id="terminal-input" class="pl-2 flex-grow" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-                    <span id="terminal-cursor"></span>
-                </div>
-            </div>
+        <div id="terminal" class="w-full h-full backdrop-blur-lg shadow-2xl flex flex-col overflow-hidden">
+            <div id="terminal-header" class="flex items-center p-3 cursor-move"><div class="flex space-x-2"><div id="terminal-close" class="w-3 h-3 bg-red-500 rounded-full cursor-pointer hover:bg-red-400"></div><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div><p class="text-center text-sm flex-grow" style="color: var(--text-muted)">prithvi@portfolio: ~</p></div>
+            <div id="terminal-body" class="p-4 overflow-y-auto flex-grow text-sm" onclick="document.getElementById('terminal-input').focus()"><div id="terminal-output"></div><div class="flex"><span style="color:var(--text-accent)">guest@prithvi.dev:~$</span><input type="text" id="terminal-input" class="pl-2 flex-grow" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><span id="terminal-cursor"></span></div></div>
         </div>
     </div>
     
     <!-- EASTER EGG: SEA CHART -->
-    <div id="sea-chart-container" class="fixed inset-0 z-[80] hidden flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm overflow-hidden">
-        <div id="sea-chart-content" class="modal-content bg-slate-800/50 rounded-lg p-8 border border-slate-700 backdrop-blur-lg w-full max-w-2xl relative text-white text-center">
-            <button id="close-sea-chart-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors text-2xl">&times;</button>
-            <p class="text-slate-300 cinzel-font text-xl mb-4">Navigating the digital seas as...</p>
-            <h2 class="text-4xl font-bold bg-gradient-custom bg-clip-text text-transparent cinzel-font">The Nautical One</h2>
-        </div>
+    <div id="sea-chart-container" class="fixed inset-0 z-[80] hidden flex items-center justify-center p-4 backdrop-blur-sm overflow-hidden">
+        <div id="sea-chart-content" class="modal-content p-8 w-full max-w-2xl relative text-center"><button id="close-sea-chart-btn" class="absolute top-4 right-4 hover:text-white transition-colors text-2xl" style="color: var(--text-secondary)">&times;</button><p class="cinzel-font text-xl mb-4" style="color: var(--text-secondary)">Navigating the digital seas as...</p><h2 class="text-4xl font-bold bg-gradient-custom bg-clip-text text-transparent cinzel-font">The Nautical One</h2></div>
     </div>
     
     <!-- EASTER EGG: DEEP SEA -->
-    <div id="deep-sea-overlay" class="fixed inset-0 z-[90] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
-        <pre id="ascii-art" class="text-center"></pre>
+    <div id="deep-sea-overlay" class="fixed inset-0 z-[90] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"><pre id="ascii-art" class="text-center"></pre></div>
+
+    <!-- EASTER EGG: FLAPPY BIRD GAME -->
+    <div id="flappy-bird-container" class="fixed inset-0 z-[75] hidden flex-col items-center justify-center p-4 backdrop-blur-md">
+        <button id="close-flappy-bird-btn" class="absolute top-4 right-4 text-2xl font-bold" style="color: var(--text-primary);">&times;</button>
+        <canvas id="flappy-bird-canvas" width="320" height="480"></canvas>
+        <div id="flappy-bird-ui" class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+            <div id="start-screen">
+                <h2 class="text-3xl font-bold mb-4" style="color: var(--text-primary);">Flappy Bird</h2>
+                <button id="start-game-btn" class="pointer-events-auto">Start Game</button>
+            </div>
+            <div id="game-over-screen" class="hidden">
+                 <h2 class="text-3xl font-bold mb-2" style="color: var(--text-primary);">Game Over</h2>
+                 <p class="text-xl mb-4" style="color: var(--text-secondary);">Score: <span id="final-score">0</span></p>
+                 <button id="restart-game-btn" class="pointer-events-auto">Restart</button>
+            </div>
+        </div>
     </div>
 
 
     <script>
-        // --- All scripts wrapped in DOMContentLoaded ---
         document.addEventListener('DOMContentLoaded', () => {
+            const constellationCanvas = document.getElementById('constellation-canvas');
+            const constellationCtx = constellationCanvas.getContext('2d');
+            const iCanvas = document.getElementById('interaction-canvas');
+            const iCtx = iCanvas.getContext('2d');
+            
+            let bgParticlesArray;
+            let skyChartStars = [];
+            let retroStars = [];
+            let iParticles = [];
+            let currentAnimation;
+
+            const starChartData = {
+                'Castor': { x: 0.65, y: 0.35 }, 
+                'Pollux': { x: 0.7, y: 0.4 },
+                'Regulus': { x: 0.75, y: 0.3 },
+                'Betelgeuse': { x: 0.8, y: 0.5 },
+                'Sirius': { x: 0.7, y: 0.8 },
+                'Spica': { x: 0.9, y: 0.6 },
+                'Antares': { x: 0.6, y: 0.95 }
+            };
+            const starChartLines = [
+                ['Castor', 'Pollux'],
+                ['Pollux', 'Betelgeuse'],
+                ['Betelgeuse', 'Sirius'],
+                ['Castor', 'Regulus']
+            ];
+
+            function setConstellationCanvasSize() {
+                constellationCanvas.width = window.innerWidth;
+                constellationCanvas.height = window.innerHeight;
+            }
+            setConstellationCanvasSize();
+
+            const mouse = { x: null, y: null };
+            
+            class BGParticle {
+                constructor(x, y, dirX, dirY, size, color) {
+                    this.x = x; this.y = y; this.dirX = dirX; this.dirY = dirY;
+                    this.size = size; this.color = color;
+                }
+                draw() {
+                    constellationCtx.beginPath();
+                    constellationCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    constellationCtx.fillStyle = this.color;
+                    constellationCtx.fill();
+                }
+                update() {
+                    if (this.x > constellationCanvas.width || this.x < 0) this.dirX = -this.dirX;
+                    if (this.y > constellationCanvas.height || this.y < 0) this.dirY = -this.dirY;
+                    this.x += this.dirX; this.y += this.dirY;
+                    this.draw();
+                }
+            }
+            
+            class SkyChartStar {
+                constructor(name, normalizedX, normalizedY) {
+                    this.name = name;
+                    this.normalizedX = normalizedX;
+                    this.normalizedY = normalizedY;
+                    this.x = normalizedX * constellationCanvas.width;
+                    this.y = normalizedY * constellationCanvas.height;
+                    this.baseSize = 4;
+                    this.size = this.baseSize;
+                    this.pulseSpeed = Math.random() * 0.04 + 0.02;
+                    this.pulseOffset = Math.random() * Math.PI * 2;
+                }
+                draw(color) {
+                    let interactionRadius = 150;
+                    let distance = mouse.x ? Math.sqrt((this.x - mouse.x)**2 + (this.y - mouse.y)**2) : interactionRadius + 1;
+                    if (distance < interactionRadius) {
+                        this.size = this.baseSize + (1 - distance / interactionRadius) * 4;
+                        const glowColor = getComputedStyle(document.documentElement).getPropertyValue('--text-accent');
+                        constellationCtx.beginPath();
+                        constellationCtx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+                        constellationCtx.fillStyle = glowColor.replace(/[\d\.]+\)$/g, `${0.1 * (1 - distance / interactionRadius)})`);
+                        constellationCtx.fill();
+                    } else {
+                         this.size = this.baseSize + Math.sin(Date.now() * 0.001 + this.pulseOffset) * 1.5;
+                    }
+
+                    constellationCtx.beginPath();
+                    constellationCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    constellationCtx.fillStyle = color;
+                    constellationCtx.fill();
+                }
+                 resize() {
+                    this.x = this.normalizedX * constellationCanvas.width;
+                    this.y = this.normalizedY * constellationCanvas.height;
+                }
+            }
+            
+            class RetroStar {
+                constructor() {
+                    this.x = Math.random() * constellationCanvas.width;
+                    this.y = Math.random() * constellationCanvas.height;
+                    this.size = Math.floor(Math.random() * 2) + 1;
+                    this.speed = this.size;
+                }
+                draw() {
+                    constellationCtx.fillStyle = getThemeColor('--star-color');
+                    constellationCtx.fillRect(this.x, this.y, this.size, this.size);
+                }
+                update() {
+                    this.y += this.speed;
+                    if (this.y > constellationCanvas.height) {
+                        this.y = 0;
+                        this.x = Math.random() * constellationCanvas.width;
+                    }
+                    this.draw();
+                }
+            }
+
+
+            function getThemeColor(varName) {
+                return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+            }
+
+            function initConstellation() {
+                bgParticlesArray = [];
+                let numberOfParticles = (constellationCanvas.height * constellationCanvas.width) / 15000;
+                let particleColor = getThemeColor('--particle-color');
+                for (let i = 0; i < numberOfParticles; i++) {
+                    let size = (Math.random() * 1.5) + 0.5;
+                    let x = Math.random() * constellationCanvas.width;
+                    let y = Math.random() * constellationCanvas.height;
+                    let dirX = (Math.random() * .4) - 0.2;
+                    let dirY = (Math.random() * .4) - 0.2;
+                    bgParticlesArray.push(new BGParticle(x, y, dirX, dirY, size, particleColor));
+                }
+                
+                skyChartStars = [];
+                for(const name in starChartData){
+                    skyChartStars.push(new SkyChartStar(name, starChartData[name].x, starChartData[name].y));
+                }
+            }
+            
+            function initRetroStarfield() {
+                retroStars = [];
+                let numberOfStars = 200;
+                for(let i=0; i < numberOfStars; i++) {
+                    retroStars.push(new RetroStar());
+                }
+            }
+
+            function connectBGParticles() {
+                let lineColor = getThemeColor('--line-color');
+                for (let a = 0; a < bgParticlesArray.length; a++) {
+                    for (let b = a; b < bgParticlesArray.length; b++) {
+                        let dist = Math.sqrt((bgParticlesArray[a].x - bgParticlesArray[b].x)**2 + (bgParticlesArray[a].y - bgParticlesArray[b].y)**2);
+                        if (dist < 120) {
+                            let opacity = 1 - (dist / 120);
+                            constellationCtx.strokeStyle = lineColor.replace(/[\d\.]+\)$/g, `${opacity})`);
+                            constellationCtx.lineWidth = 1;
+                            constellationCtx.beginPath();
+                            constellationCtx.moveTo(bgParticlesArray[a].x, bgParticlesArray[a].y);
+                            constellationCtx.lineTo(bgParticlesArray[b].x, bgParticlesArray[b].y);
+                            constellationCtx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            function drawSkyChart() {
+                const starColor = getThemeColor('--star-color');
+                const lineColor = getThemeColor('--star-line-color');
+                skyChartStars.forEach(star => star.draw(starColor));
+
+                constellationCtx.strokeStyle = lineColor;
+                constellationCtx.lineWidth = 2;
+                starChartLines.forEach(line => {
+                    const star1 = skyChartStars.find(s => s.name === line[0]);
+                    const star2 = skyChartStars.find(s => s.name === line[1]);
+                    if (star1 && star2) {
+                        constellationCtx.beginPath();
+                        constellationCtx.moveTo(star1.x, star1.y);
+                        constellationCtx.lineTo(star2.x, star2.y);
+                        constellationCtx.stroke();
+                    }
+                });
+            }
+
+            function animateConstellation() {
+                constellationCtx.clearRect(0,0, constellationCanvas.width, constellationCanvas.height);
+                bgParticlesArray.forEach(p => p.update());
+                connectBGParticles();
+                drawSkyChart();
+            }
+            
+            function animateRetroStarfield() {
+                constellationCtx.clearRect(0,0, constellationCanvas.width, constellationCanvas.height);
+                retroStars.forEach(s => s.update());
+            }
+
+            function startAnimation() {
+                if (currentAnimation) cancelAnimationFrame(currentAnimation);
+                
+                function loop() {
+                    if(document.documentElement.classList.contains('retro-mode')) {
+                        animateRetroStarfield();
+                    } else {
+                        animateConstellation();
+                    }
+                    currentAnimation = requestAnimationFrame(loop);
+                }
+                loop();
+            }
+
+            // --- PARTICLE INTERACTION LAYER ---
+            let isScrolling = false;
+            let scrollTimeout;
+
+            function setInteractionCanvasSize() {
+                iCanvas.width = window.innerWidth;
+                iCanvas.height = window.innerHeight;
+            }
+            setInteractionCanvasSize();
+
+            class InteractiveParticle {
+                constructor(x, y, color, speedMultiplier = 1) {
+                    this.x = x;
+                    this.y = y;
+                    this.size = Math.random() * 2.5 + 1;
+                    this.speedX = (Math.random() * 2 - 1) * speedMultiplier;
+                    this.speedY = (Math.random() * 2 - 1) * speedMultiplier;
+                    this.color = color;
+                    this.life = 100;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.life -= 1.5;
+                    if (this.size > 0.1) this.size -= 0.03;
+                }
+                draw() {
+                    iCtx.globalAlpha = this.life / 100;
+                    iCtx.fillStyle = this.color;
+                    iCtx.beginPath();
+                    iCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    iCtx.fill();
+                    iCtx.globalAlpha = 1;
+                }
+            }
+            
+            function animateInteractionLayer() {
+                iCtx.clearRect(0, 0, iCanvas.width, iCanvas.height);
+                for (let i = 0; i < iParticles.length; i++) {
+                    iParticles[i].update();
+                    iParticles[i].draw();
+                    if (iParticles[i].life < 0 || iParticles[i].size < 0.1) {
+                        iParticles.splice(i, 1);
+                        i--;
+                    }
+                }
+                requestAnimationFrame(animateInteractionLayer);
+            }
+            animateInteractionLayer();
+            
+            window.addEventListener('mousemove', e => { 
+                mouse.x = e.x; 
+                mouse.y = e.y; 
+                const particleCount = isScrolling ? 2 : 1;
+                for (let i = 0; i < particleCount; i++) {
+                    iParticles.push(new InteractiveParticle(mouse.x, mouse.y, getThemeColor('--text-accent')));
+                }
+            });
+            window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+            
+            window.addEventListener('click', e => {
+                 for (let i = 0; i < 15; i++) {
+                    iParticles.push(new InteractiveParticle(e.x, e.y, getThemeColor('--text-accent'), 1.5));
+                }
+            });
+
+            window.addEventListener('scroll', () => {
+                isScrolling = true;
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => { isScrolling = false; }, 150);
+            });
+
+            document.querySelectorAll('.skill-header').forEach(header => {
+                header.addEventListener('mouseenter', () => {
+                    const rect = header.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    for (let i = 0; i < 20; i++) {
+                        iParticles.push(new InteractiveParticle(centerX, centerY, getThemeColor('--text-accent'), 2));
+                    }
+                });
+            });
+
+            // --- GLOBAL RESIZE HANDLER ---
+            window.addEventListener('resize', () => {
+                setConstellationCanvasSize();
+                setInteractionCanvasSize();
+                skyChartStars.forEach(s => s.resize());
+                initConstellation();
+                initRetroStarfield();
+            });
+
+            // --- THEME TOGGLE LOGIC (WITH EASTER EGG) ---
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            const htmlEl = document.documentElement;
+            let themeClickCount = 0;
+            let themeClickTimer = null;
+
+            const setTheme = (theme) => {
+                htmlEl.classList.remove('light-mode', 'neon-mode', 'retro-mode');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.add('hidden');
+
+                if (theme === 'light') {
+                    htmlEl.classList.add('light-mode');
+                    sunIcon.classList.remove('hidden');
+                } else if (theme === 'neon') {
+                    htmlEl.classList.add('neon-mode');
+                    moonIcon.classList.remove('hidden');
+                } else if (theme === 'retro') {
+                    htmlEl.classList.add('retro-mode');
+                    moonIcon.classList.remove('hidden');
+                } else { // 'dark' is the default
+                    moonIcon.classList.remove('hidden');
+                }
+                localStorage.setItem('theme', theme);
+
+                if (theme === 'retro') {
+                    initRetroStarfield();
+                } else {
+                    initConstellation();
+                }
+            };
+
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme || 'dark'); // Load saved theme or default to dark
+
+            themeToggleBtn.addEventListener('click', () => {
+                themeClickCount++;
+                if (themeClickTimer) clearTimeout(themeClickTimer);
+
+                themeClickTimer = setTimeout(() => {
+                    const currentTheme = localStorage.getItem('theme') || 'dark';
+                    if (themeClickCount >= 3) {
+                        setTheme(currentTheme === 'neon' ? 'dark' : 'neon');
+                    } else if (themeClickCount === 1) {
+                        if (currentTheme === 'neon' || currentTheme === 'retro') {
+                            setTheme('dark');
+                        } else {
+                            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+                        }
+                    }
+                    themeClickCount = 0;
+                }, 300); // 300ms window to register multiple clicks
+            });
+            
+            // --- KONAMI CODE EASTER EGG ---
+            const konamiCode = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+            let konamiIndex = 0;
+            document.addEventListener('keydown', (e) => {
+                const keyPressed = e.key.toLowerCase();
+                if(keyPressed === konamiCode[konamiIndex]) {
+                    konamiIndex++;
+                    if(konamiIndex === konamiCode.length) {
+                        setTheme('retro');
+                        konamiIndex = 0;
+                    }
+                } else {
+                    konamiIndex = (keyPressed === konamiCode[0]) ? 1 : 0;
+                }
+            });
+
+            startAnimation();
+
+
+            // --- SCROLL-REVEAL ANIMATION ---
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            scrollRevealElements.forEach(element => {
+                revealObserver.observe(element);
+            });
+
 
             // --- Mobile Menu Toggle ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
-            for (let i = 0; i < mobileMenuLinks.length; i++) {
-                mobileMenuLinks[i].addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
+            for (let link of mobileMenuLinks) {
+                link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); });
             }
             
             // --- Console Log Easter Egg ---
-            console.log(
-                "%cHey there, curious developer! \n%cGlad to see you checking out the console. If you like what you see, let's connect! \n\n- Prithvi",
-                "color: #8B5CF6; font-size: 24px; font-weight: bold; -webkit-text-stroke: 1px black;",
-                "color: #CBD5E1; font-size: 16px;"
-            );
+            console.log("%cHey there, curious developer!", "color: #8B5CF6; font-size: 24px; font-weight: bold;", "\nGlad you're here. Feel free to explore!");
 
             // --- Hero Section Name Animation ---
              function runDecodeAnimation() {
                 const animatedNameWrapper = document.getElementById('animated-name-wrapper');
                 const animatedNameContainer = document.getElementById('animated-name');
                 if (!animatedNameContainer || !animatedNameWrapper) return;
-
-                const targetText = "Prithvi Syam D S."; // Added dot here
+                const targetText = "Prithvi Syam D S.";
                 const chars = "!<>-_\\/[]{}—=+*^?#";
-                
                 animatedNameContainer.innerHTML = '';
-
                 const letters = targetText.split('');
-                
                 letters.forEach((char, index) => {
                     const span = document.createElement('span');
                     span.className = 'name-char';
                     span.innerHTML = '&nbsp;';
                     animatedNameContainer.appendChild(span);
-
-                    if (index === letters.length - 1) { // The last character is the dot
-                        span.id = 'underline-dot';
-                    }
-
+                    if (index === letters.length - 1) { span.id = 'underline-dot'; }
                     let revealDelay = index * 60 + 500;
-                    
                     setTimeout(() => {
                         let iterations = 0;
                         const maxIterations = char === ' ' ? 0 : 10;
-                        
                         const interval = setInterval(() => {
                             span.textContent = chars[Math.floor(Math.random() * chars.length)];
                             iterations++;
@@ -752,33 +1477,23 @@
                                 clearInterval(interval);
                                 span.innerHTML = char === ' ' ? '&nbsp;' : char;
                                 span.classList.add('decoded');
-                                if(index === letters.length - 1) {
-                                    triggerUnderlineAnimation();
-                                }
+                                if(index === letters.length - 1) triggerUnderlineAnimation();
                             }
                         }, 50);
                     }, revealDelay);
                 });
-
                 function triggerUnderlineAnimation() {
                     const dot = document.getElementById('underline-dot');
                     if (!dot) return;
-                    
                     setTimeout(() => {
-                         // 1. Create and append the underline element
                         const underline = document.createElement('div');
                         underline.id = 'name-underline';
                         const nameWidth = animatedNameContainer.getBoundingClientRect().width - dot.getBoundingClientRect().width;
                         underline.style.width = `${nameWidth}px`;
                         animatedNameWrapper.appendChild(underline);
-
-                        // 2. Animate dot and underline
                         dot.classList.add('is-transforming');
-                        setTimeout(() => {
-                            underline.style.transform = 'scaleX(1)';
-                        }, 100);
-
-                    }, 2000); // 2-second wait
+                        setTimeout(() => { underline.style.transform = 'scaleX(1)'; }, 100);
+                    }, 2000);
                 }
             }
             runDecodeAnimation();
@@ -786,7 +1501,10 @@
             // --- Project Card Flip Logic ---
             const projectCards = document.querySelectorAll('.project-card');
             projectCards.forEach(card => {
-                card.addEventListener('click', () => {
+                card.addEventListener('click', (e) => {
+                     if (e.target.tagName.toLowerCase() === 'a') return;
+                    const inner = card.querySelector('.flip-card-inner');
+                    if (inner) inner.style.transform = '';
                     projectCards.forEach(otherCard => {
                         if (otherCard !== card) {
                             otherCard.classList.remove('is-flipped');
@@ -810,33 +1528,86 @@
                 });
             });
 
+            // --- 3D TILT EFFECT LOGIC ---
+            const tiltCards = document.querySelectorAll('.tilt-card');
+            tiltCards.forEach(card => {
+                const maxTilt = 15;
+                card.addEventListener('mousemove', (e) => {
+                    if (card.classList.contains('is-flipped') || document.documentElement.classList.contains('retro-mode')) return;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const width = card.offsetWidth;
+                    const height = card.offsetHeight;
+                    const rotateY = (x / width - 0.5) * 2 * maxTilt;
+                    const rotateX = (y / height - 0.5) * -2 * maxTilt;
+                    card.style.transition = 'transform 0.1s linear';
+                    const inner = card.querySelector('.flip-card-inner');
+                    const target = inner || card;
+                    target.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+                    card.style.setProperty('--mouse-x', `${(x/width)*100}%`);
+                    card.style.setProperty('--mouse-y', `${(y/height)*100}%`);
+                });
+                card.addEventListener('mouseleave', () => {
+                    if (card.classList.contains('is-flipped')) return;
+                    card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+                    const inner = card.querySelector('.flip-card-inner');
+                    const target = inner || card;
+                    target.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+                });
+            });
+
+            // --- Gooey Button Effect Logic ---
+            const gooeyButtons = document.querySelectorAll('.gooey-button');
+            gooeyButtons.forEach(button => {
+                const blobs = button.querySelectorAll('.blob');
+                button.addEventListener('mousemove', (e) => {
+                    const rect = button.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    blobs.forEach((blob, i) => {
+                        const dx = (i % 2 === 0) ? -5 : 5;
+                        const dy = (i < 2) ? -5 : 5;
+                        blob.style.transform = `translate(${x + dx}px, ${y + dy}px) scale(1.5)`;
+                    });
+                });
+                 button.addEventListener('mouseleave', (e) => {
+                    blobs.forEach(blob => {
+                        blob.style.transform = 'translate(-50%, -50%) scale(0)';
+                    });
+                });
+            });
+
+            // --- Animated Social Icons Logic ---
+            const githubIcon = document.querySelector('.social-icon.github-icon');
+            if (githubIcon) {
+                githubIcon.addEventListener('mouseenter', () => {
+                    if (!githubIcon.classList.contains('is-waving')) {
+                        githubIcon.classList.add('is-waving');
+                        githubIcon.addEventListener('animationend', () => {
+                            githubIcon.classList.remove('is-waving');
+                        }, { once: true });
+                    }
+                });
+            }
+
             // --- Easter Egg: Terminal Logic ---
             const trigger = document.getElementById('easter-egg-trigger');
             const terminalContainer = document.getElementById('terminal-container');
             const terminalInput = document.getElementById('terminal-input');
             const terminalOutput = document.getElementById('terminal-output');
             const terminalCloseBtn = document.getElementById('terminal-close');
-            
-            let clickCount = 0;
-            let clickTimer = null;
-
+            let termClickCount = 0;
+            let termClickTimer = null;
             if (trigger) {
                 trigger.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    clickCount++;
-                    if (clickTimer) clearTimeout(clickTimer);
-                    
-                    if (clickCount >= 5) {
-                        openTerminal();
-                        clickCount = 0;
-                    } else {
-                        clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
-                    }
+                    e.preventDefault(); termClickCount++;
+                    if (termClickTimer) clearTimeout(termClickTimer);
+                    if (termClickCount >= 5) { openTerminal(); termClickCount = 0; } 
+                    else { termClickTimer = setTimeout(() => { termClickCount = 0; }, 1000); }
                 });
             }
-            
             if(terminalCloseBtn) terminalCloseBtn.addEventListener('click', closeTerminal);
-            
             function openTerminal() { 
                 if(terminalContainer) terminalContainer.classList.remove('hidden');
                 if(terminalInput) {
@@ -845,170 +1616,179 @@
                     setTimeout(() => terminalInput.focus(), 100);
                 }
             }
-            function closeTerminal() { 
-                if(terminalContainer) terminalContainer.classList.add('hidden');
-            }
-
+            function closeTerminal() { if(terminalContainer) terminalContainer.classList.add('hidden'); }
             if(terminalInput) {
                 terminalInput.addEventListener('keydown', function(e) {
                     if (e.key === "Enter") {
                         const command = this.value.trim().toLowerCase();
-                        
                         const commandOutput = document.createElement('p');
-                        commandOutput.innerHTML = `<span class="terminal-output-command">guest@prithvi.dev:~$</span> ${command}`;
+                        commandOutput.innerHTML = `<span class="terminal-output-command" style="color:var(--text-accent)">guest@prithvi.dev:~$</span> ${command}`;
                         terminalOutput.appendChild(commandOutput);
-
                         handleCommand(command);
-                        
                         this.value = '';
-                        const terminalBody = document.getElementById('terminal-body');
-                        terminalBody.scrollTop = terminalBody.scrollHeight;
+                        document.getElementById('terminal-body').scrollTop = document.getElementById('terminal-body').scrollHeight;
                     }
                 });
             }
-            
             function handleCommand(command) {
                 const output = document.createElement('div');
                 output.classList.add('mt-1', 'mb-3');
-                
                 switch(command) {
-                    case 'help':
-                        output.innerHTML = `<p>Available commands:</p><ul class="list-disc list-inside ml-4"><li><span class="text-violet-400">whoami</span> - Display a short bio.</li><li><span class="text-violet-400">projects</span> - List all projects.</li><li><span class="text-violet-400">skills</span> - List key technical skills.</li><li><span class="text-violet-400">contact</span> - Show contact information.</li><li><span class="text-violet-400">nautical</span> - Discover the captain's log.</li><li><span class="text-violet-400">clear</span> - Clear the terminal screen.</li><li><span class="text-violet-400">exit</span> - Close the terminal.</li></ul>`;
-                        break;
-                    case 'whoami':
-                        output.innerHTML = `<p>Prithvi Syam D S | AI/ML & DevOps Enthusiast</p><p>A passionate developer focused on building intelligent, robust, and secure systems.</p>`;
-                        break;
-                    case 'projects':
-                        let projectList = '<p>Listing all projects:</p><ul class="list-disc list-inside ml-4">';
-                        document.querySelectorAll('.project-title').forEach((title, index) => {
-                            projectList += `<li>[${index+1}] ${title.innerText}</li>`;
-                        });
-                        projectList += '</ul>';
-                        output.innerHTML = projectList;
-                        break;
-                    case 'skills':
-                        output.innerHTML = `<p><strong>Programming & Frameworks:</strong> Python, TensorFlow, PyTorch, Hugging Face, Scikit-learn, Pandas, NumPy</p><p><strong>Machine Learning & AI:</strong> Supervised & Unsupervised Learning, Deep Learning, NLP, Generative AI, Explainable AI</p><p><strong>APIs & Deployment:</strong> REST API, AWS (Bedrock, Lex, Lambda), Docker, Git/GitHub</p><p><strong>Cybersecurity:</strong> Network Security Principles, Threat Analysis</p>`;
-                        break;
-                     case 'contact':
-                        output.innerHTML = `<p>You can reach out via:</p><ul class="list-disc list-inside ml-4"><li><a href="https://www.linkedin.com/in/prithvisyamds/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a></li><li><a href="https://github.com/PrithviSyam" target="_blank" class="text-blue-400 hover:underline">GitHub</a></li><li><a href="#" id="contact-from-terminal" class="text-blue-400 hover:underline">Contact Modal</a></li></ul>`;
-                        setTimeout(() => {
-                           document.getElementById('contact-from-terminal').addEventListener('click', (e) => {
-                                e.preventDefault();
-                                closeTerminal();
-                                openContactModal();
-                           });
-                        }, 0);
-                        break;
-                    case 'nautical':
-                        closeTerminal();
-                        openSeaChart();
-                        return;
-                    case 'clear':
-                        terminalOutput.innerHTML = '';
-                        return;
-                    case 'exit':
-                        closeTerminal();
-                        return;
-                    default:
-                        output.innerHTML = `<p>Command not found: ${command}. Type 'help' for a list of commands.</p>`;
+                    case 'help': output.innerHTML = `<p>Available commands:</p><ul class="list-disc list-inside ml-4"><li><span style="color:var(--text-accent)">whoami</span>, <span style="color:var(--text-accent)">projects</span>, <span style="color:var(--text-accent)">skills</span>, <span style="color:var(--text-accent)">contact</span>, <span style="color:var(--text-accent)">nautical</span>, <span style="color:var(--text-accent)">2004</span>, <span style="color:var(--text-accent)">clear</span>, <span style="color:var(--text-accent)">exit</span></li></ul>`; break;
+                    case 'whoami': output.innerHTML = `<p>Prithvi Syam D S | AI/ML & DevOps Enthusiast</p>`; break;
+                    case 'projects': let pList = '<p>Projects:</p><ul class="list-disc list-inside ml-4">'; document.querySelectorAll('.project-title').forEach((t,i)=>{pList+=`<li>[${i+1}] ${t.innerText}</li>`;}); pList+='</ul>'; output.innerHTML=pList; break;
+                    case 'skills': output.innerHTML = `<p><strong>Key Skills:</strong> Python, TensorFlow, PyTorch, AWS, Docker, NLP, Generative AI, Network Security...</p>`; break;
+                    case 'contact': output.innerHTML = `<p>Reach out via: <a href="https://www.linkedin.com/in/prithvisyamds/" target="_blank" class="hover:underline" style="color:var(--text-accent)">LinkedIn</a> or <a href="#" id="contact-from-terminal" class="hover:underline" style="color:var(--text-accent)">Contact Modal</a></p>`; setTimeout(() => {document.getElementById('contact-from-terminal').onclick=(e)=>{e.preventDefault();closeTerminal();openContactModal();}},0); break;
+                    case 'nautical': closeTerminal(); openSeaChart(); return;
+                    case '2004': closeTerminal(); openFlappyBirdGame(); return;
+                    case 'clear': terminalOutput.innerHTML = ''; return;
+                    case 'exit': closeTerminal(); return;
+                    default: output.innerHTML = `<p>Command not found: ${command}. Type 'help'.</p>`;
                 }
-                
                 terminalOutput.appendChild(output);
             }
             
             // --- Contact Modal Logic ---
-            const contactModal = document.getElementById('contact-modal');
-            const openBtn = document.getElementById('open-contact-modal-btn');
-            const closeBtn = document.getElementById('close-contact-modal-btn');
-
+            const contactModal = document.getElementById('contact-modal'), openBtn = document.getElementById('open-contact-modal-btn'), closeBtn = document.getElementById('close-contact-modal-btn');
             function openContactModal() { if(contactModal) contactModal.classList.remove('hidden'); }
             function closeContactModal() { if(contactModal) contactModal.classList.add('hidden'); }
-            
             if(openBtn) openBtn.addEventListener('click', openContactModal);
             if(closeBtn) closeBtn.addEventListener('click', closeContactModal);
-            if(contactModal) contactModal.addEventListener('click', (e) => {
-                if (e.target === contactModal) closeContactModal();
-            });
+            if(contactModal) contactModal.addEventListener('click', (e) => { if (e.target === contactModal) closeContactModal(); });
 
             // --- Sea Chart & Deep Sea Easter Eggs ---
-            const seaChartContainer = document.getElementById('sea-chart-container');
-            const closeSeaChartBtn = document.getElementById('close-sea-chart-btn');
-            const footerTrigger = document.getElementById('footer-trigger');
-            const deepSeaOverlay = document.getElementById('deep-sea-overlay');
-            const asciiArtEl = document.getElementById('ascii-art');
-
-            function openSeaChart() {
-                if(!seaChartContainer) return;
-                seaChartContainer.classList.remove('hidden');
-                const wave = document.createElement('div');
-                wave.id = 'wave';
-                seaChartContainer.appendChild(wave);
-                wave.addEventListener('animationend', () => wave.remove());
-            }
+            const seaChartContainer = document.getElementById('sea-chart-container'), closeSeaChartBtn = document.getElementById('close-sea-chart-btn'), footerTrigger = document.getElementById('footer-trigger'), deepSeaOverlay = document.getElementById('deep-sea-overlay'), asciiArtEl = document.getElementById('ascii-art');
+            function openSeaChart() { if(!seaChartContainer) return; seaChartContainer.classList.remove('hidden'); const wave=document.createElement('div'); wave.id='wave'; seaChartContainer.appendChild(wave); wave.addEventListener('animationend',()=>wave.remove());}
             function closeSeaChart() { if(seaChartContainer) seaChartContainer.classList.add('hidden'); }
             if(closeSeaChartBtn) closeSeaChartBtn.addEventListener('click', closeSeaChart);
-
             if(footerTrigger) footerTrigger.addEventListener('click', () => { showDeepSeaEasterEgg(); });
-
             function showDeepSeaEasterEgg() {
                 if(!deepSeaOverlay || !asciiArtEl) return;
                 deepSeaOverlay.classList.remove('hidden');
-                const shipArt = [
-                    '              |    |    |',
-                    '             )_)  )_)  )_)',
-                    '            )___))___))___)\\\\',
-                    '           )____)____)_____)\\\\\\\\',
-                    '         _____|____|____|____\\\\\\\\\\\\__',
-                    '--------- \\\\\\\\                  /---------',
-                    '  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^',
-                    '    ^^^^      ^^^^     ^^^    ^^',
-                    '         ^^^^      ^^^'
-                ];
+                const shipArt = ['              |    |    |','             )_)  )_)  )_)', '            )___))___))___)\\\\','           )____)____)_____)\\\\\\\\','         _____|____|____|____\\\\\\\\\\\\__','--------- \\\\\\\\                  /---------','  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^', '    ^^^^      ^^^^     ^^^    ^^', '         ^^^^      ^^^'];
                 const captainLine = "> Captain on deck: The Nautical One";
                 typeAsciiArt(shipArt, () => {
-                    const line = document.createElement('p');
-                    line.className = 'mt-4 text-lg text-slate-300';
-                    asciiArtEl.appendChild(line);
-                    let i = 0;
-                    function typeCaptain() {
-                        if (i < captainLine.length) {
-                            line.textContent += captainLine.charAt(i);
-                            i++;
-                            setTimeout(typeCaptain, 50);
-                        } else {
-                            const cursor = document.createElement('span');
-                            cursor.className = 'captain-line-cursor';
-                            line.appendChild(cursor);
-                            deepSeaOverlay.addEventListener('click', () => {
-                                deepSeaOverlay.classList.add('hidden');
-                                asciiArtEl.innerHTML = '';
-                            }, { once: true });
-                        }
-                    }
-                    typeCaptain();
+                    const line = document.createElement('p'); line.className = 'mt-4 text-lg'; line.style.color = 'var(--text-secondary)'; asciiArtEl.appendChild(line);
+                    let i=0; function typeCaptain(){if(i<captainLine.length){line.textContent+=captainLine.charAt(i); i++; setTimeout(typeCaptain, 50);}else{const cursor=document.createElement('span'); cursor.className='captain-line-cursor'; line.appendChild(cursor); deepSeaOverlay.addEventListener('click', () => { deepSeaOverlay.classList.add('hidden'); asciiArtEl.innerHTML = '';}, {once:true});}} typeCaptain();
                 });
             }
+            function typeAsciiArt(artArray, callback) { if(!asciiArtEl) return; asciiArtEl.innerHTML = ''; let y = 0; function typeLine(){if(y<artArray.length){const line=document.createElement('div'); line.textContent=artArray[y]; asciiArtEl.appendChild(line); y++; setTimeout(typeLine,60);}else{if(callback)callback();}} typeLine();}
+            
+            // --- FLAPPY BIRD GAME LOGIC ---
+            const gameContainer = document.getElementById('flappy-bird-container');
+            const gameCanvas = document.getElementById('flappy-bird-canvas');
+            const gameCtx = gameCanvas.getContext('2d');
+            const startGameBtn = document.getElementById('start-game-btn');
+            const restartGameBtn = document.getElementById('restart-game-btn');
+            const closeGameBtn = document.getElementById('close-flappy-bird-btn');
+            const startScreen = document.getElementById('start-screen');
+            const gameOverScreen = document.getElementById('game-over-screen');
+            const finalScoreEl = document.getElementById('final-score');
+            
+            let bird, pipes, score, gameState, gameLoopId;
+            const birdProps = { x: 50, y: 150, width: 20, height: 20, gravity: 0.25, lift: -5.5, velocity: 0 };
+            const pipeProps = { width: 50, gap: 120, speed: 3 };
 
-            function typeAsciiArt(artArray, callback) {
-                if(!asciiArtEl) return;
-                asciiArtEl.innerHTML = '';
-                let y = 0;
-                function typeLine() {
-                    if (y < artArray.length) {
-                        const line = document.createElement('div');
-                        line.textContent = artArray[y];
-                        asciiArtEl.appendChild(line);
-                        y++;
-                        setTimeout(typeLine, 60);
-                    } else {
-                        if (callback) callback();
-                    }
-                }
-                typeLine();
+            function resetGame() {
+                bird = { ...birdProps };
+                pipes = [];
+                score = 0;
+                gameState = 'ready';
+                pipes.push({ x: gameCanvas.width, top: Math.floor(Math.random() * (gameCanvas.height - pipeProps.gap - 50)) + 25 });
             }
+
+            function gameLoop() {
+                gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+                
+                gameCtx.fillStyle = getThemeColor('--bg-primary');
+                gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+                if (gameState === 'playing') {
+                    bird.velocity += bird.gravity;
+                    bird.y += bird.velocity;
+
+                    if (pipes[pipes.length - 1].x < gameCanvas.width - 200) {
+                        pipes.push({ x: gameCanvas.width, top: Math.floor(Math.random() * (gameCanvas.height - pipeProps.gap - 50)) + 25 });
+                    }
+                    pipes.forEach(p => p.x -= pipeProps.speed);
+                    pipes = pipes.filter(p => p.x + pipeProps.width > 0);
+                    
+                    pipes.forEach(p => {
+                        if (!p.passed && p.x + pipeProps.width < bird.x) {
+                            p.passed = true;
+                            score++;
+                        }
+                    });
+
+                    if (bird.y > gameCanvas.height - bird.height || bird.y < 0) {
+                        endGame();
+                    }
+                    pipes.forEach(p => {
+                        if (bird.x < p.x + pipeProps.width && bird.x + bird.width > p.x && (bird.y < p.top || bird.y + bird.height > p.top + pipeProps.gap)) {
+                            endGame();
+                        }
+                    });
+                }
+                
+                gameCtx.fillStyle = getThemeColor('--text-accent');
+                pipes.forEach(p => {
+                    gameCtx.fillRect(p.x, 0, pipeProps.width, p.top);
+                    gameCtx.fillRect(p.x, p.top + pipeProps.gap, pipeProps.width, gameCanvas.height - p.top - pipeProps.gap);
+                });
+                gameCtx.fillRect(bird.x, bird.y, bird.width, bird.height);
+                
+                gameCtx.fillStyle = getThemeColor('--text-primary');
+                gameCtx.font = "20px var(--font-family-heading)";
+                gameCtx.fillText(score, gameCanvas.width / 2, 50);
+
+                gameLoopId = requestAnimationFrame(gameLoop);
+            }
+            
+            function startGame() {
+                resetGame();
+                gameState = 'playing';
+                startScreen.classList.add('hidden');
+                gameOverScreen.classList.add('hidden');
+                gameLoop();
+            }
+
+            function endGame() {
+                gameState = 'over';
+                cancelAnimationFrame(gameLoopId);
+                finalScoreEl.textContent = score;
+                gameOverScreen.classList.remove('hidden');
+            }
+
+            function flap() {
+                if (gameState === 'playing') bird.velocity = bird.lift;
+            }
+            
+            function openFlappyBirdGame() {
+                gameContainer.classList.remove('hidden');
+                gameContainer.classList.add('flex');
+                startScreen.classList.remove('hidden');
+                gameOverScreen.classList.add('hidden');
+                resetGame();
+            }
+            
+            function closeFlappyBirdGame() {
+                gameContainer.classList.add('hidden');
+                gameContainer.classList.remove('flex');
+                cancelAnimationFrame(gameLoopId);
+            }
+            
+            startGameBtn.addEventListener('click', startGame);
+            restartGameBtn.addEventListener('click', startGame);
+            closeGameBtn.addEventListener('click', closeFlappyBirdGame);
+            document.addEventListener('keydown', (e) => { 
+                if (e.code === 'Space' && gameContainer.classList.contains('flex')) {
+                    e.preventDefault();
+                    flap();
+                }
+            });
+            gameCanvas.addEventListener('click', flap);
+
         });
     </script>
 </body>
 </html>
-
-

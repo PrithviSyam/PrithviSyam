@@ -1,80 +1,91 @@
-This repository contains the source code for my personal portfolio website, a fully responsive, single page application designed to showcase my projects, skills, and publications in the fields of Data  Science, AI/ML, and Software Development. The site is built with a "Modern & Techie" aesthetic, featuring a unique horizontal scroll, extensive animations, and interactive easter eggs. 
-
-Features:   The portfolio is designed to be an engaging and interactive experience for visitors, especially recruiters and fellow developers.
-
-UI/UX & Animations: 
-
-• Horizontal Scrolling: The entire website navigates horizontally, with each section occupying a full viewport width, creating a unique gallery-like experience. 
-
-• Glassmorphism UI: A "liquid glass" effect is used on cards and navigation elements, creating a sense of depth with blurred, semi-transparent backgrounds. 
-
-• Fluid Hover Effects: Navigation links, project cards, and skill headers feature a smooth "liquid light" animation on hover, enhancing interactivity. 
-
-• Hero Animation: The name "Prithvi Syam D S." is revealed with a custom "decode" effect, followed by a 2-second pause before the final period gracefully transforms into a vibrant underline. 
-
-Interactive Sections: 
-
-• 3D Flip Cards for Projects: The project showcase initially displays only the project titles. On click, each card performs a 3D flip to reveal a detailed description, the tech stack used, and links to publications. Only one card can be flipped at a time to maintain focus. 
-
-• Accordion Skills Menu: The "Technical Toolkit" section is organized into an interactive accordion. Clicking a category header smoothly expands a dropdown list of relevant skills, each presented in a clean, modern tile. 
+This repository contains the source code for my personal portfolio website, a fully responsive, single-page application designed to showcase my projects, skills, and publications in the fields of Data Science, AI/ML, and Software Development. The site follows a modern and tech-focused aesthetic, featuring horizontal scroll navigation, extensive animations, and hidden interactive easter eggs. The portfolio is designed to provide an engaging experience for visitors, especially recruiters and fellow developers, while demonstrating advanced front-end development skills.
 
 
-Hidden Easter Eggs: 
+A. UI/UX & Animations
 
-• To add a personal touch and showcase creativity, the site includes several hidden features: 
+        1. Horizontal Scrolling: The entire site navigates horizontally, with each section spanning the full viewport width, creating a gallery-like browsing experience.
 
-• The Terminal: Clicking on the name in the header 5 times reveals a full-screen, glass-style  command-line terminal. Users can type commands like help, projects, skills and exit. 
+        2. Glassmorphism UI: Cards and navigation elements employ blurred, semi-transparent “liquid glass” styling to create depth.
 
-• The Hidden Sea Chart: Typing nautical into the terminal triggers a wave animation that reveals a hidden sea chart displaying the gaming name "The Nautical One." 
-• The Deep Sea Discovery: Clicking the "Designed & Built by Prithvi Syam" text in the footer triggers a full-screen overlay where an ASCII art of a majestic galleon is drawn line-by-line, followed by the signature: > Captain on deck: The Nautical One. 
+        3. Fluid Hover Effects: Navigation links, project cards, and skill headers feature smooth “liquid light” animations on hover.
 
-• Developer Console Message: A custom, styled message is logged in the browser's developer console for curious visitors.
+        4. Hero Animation: The name “Prithvi Syam D S.” is revealed with a custom decode effect, followed by a timed transformation into a vibrant underline.
 
-Technology Stack: 
+        5. Scroll-Reveal Animations: Content fades and slides into view as the user scrolls, maintaining a smooth visual flow.
 
-• This project was built from the ground up with a focus on simplicity, performance, and 
-modern aesthetics, using only front-end technologies. 
+        6. Animated Section Dividers: Subtle SVG wave animations separate sections, enhancing the fluid design language.
 
-• Core: HTML5, CSS3, JavaScript (ES6) 
+        7. Glitch Effect on Name: The header name animates with a controlled glitch effect on hover, adding a high-tech aesthetic.
 
-• Styling: Tailwind CSS for a utility-first workflow. All custom styles, including animations and 
-glassmorphism effects, are contained within a single <style> block. 
+        8. 3D Parallax Tilt: Project and skill cards tilt dynamically with mouse movement, featuring a reflective glare effect.
 
-• Fonts: Google Fonts are used for typography: 
+        9. Gooey Button Morphing: Primary buttons distort with a liquid-like morphing animation on hover.
 
-    o Inter for the main body and UI text. 
-    o Fira Code for the terminal and ASCII art easter eggs. 
-    o Cinzel for the "Nautical" themed easter egg. 
+        10. Animated Social Icons: Social media links animate with unique, branded effects for a polished feel.
 
-• Deployment: on GitHub Pages. 
+B. Multi-Theme System
 
+        1. Light/Dark Modes: Users can toggle between a clean light mode and a sleek dark mode. Preferences persist across sessions.
 
-Code Structure: 
+        2. Neon Hacker Theme (Easter Egg): A hidden neon-green theme with futuristic fonts and angular UI. Activated by triple-clicking the theme toggle button.
 
-• For maximum portability and ease of deployment, the entire project is contained within a 
-single index.html file. 
-
-• <head> Section: 
-
-      o Contains all meta tags and links to external assets (Tailwind CSS and Google Fonts). 
-      o A single <style> tag holds all custom CSS, including @keyframes for all animations (name reveal, liquid effects, etc.) and utility styles for the glass UI and interactive elements. 
-
-• <body> Section: 
-
-    o <header>: The fixed navigation bar at the top of the page.<main class="flex">: This is the core container that enables the horizontal layout. All page sections are direct children of this element. 
-    o <section class="page-section">: Each distinct part of the portfolio (Hero, About, Projects, Skills, Contact) is wrapped in a section tag that is styled to be 100vw wide and 100vh high. 
-    o Modals & Overlays: The HTML for all pop-ups (Contact Modal, Terminal, Sea Chart, Deep Sea Discovery) is located at the end of the <body> and is hidden by default with CSS. 
-    
-• <script> Section: 
-
-    o A single script tag at the very end of the <body> contains all the JavaScript logic. 
-    o Event Listeners: The script is wrapped in a DOMContentLoaded event listener to ensure all HTML elements are loaded before it runs. 
-    o Functionality: It handles all interactive features, including the horizontal scroll navigation, mobile menu toggle, project card flipping, skills accordion, and the logic for triggering and displaying all easter eggs.
+        3. Theme-Specific Styles: Each theme alters not only colors but also fonts and UI roundness, creating distinct aesthetics.
 
 
+C. Interactive Backgrounds
+
+        1. Personalized Animated Sky Chart: A canvas-based starfield rendering the real sky chart from my birthday. Stars like Sirius, Betelgeuse, and Regulus are included, making the design uniquely personal. The sky subtly drifts and reacts to cursor movements.
+
+        2. Interactive Particle Layer:
+                    a. Cursor leaves a glowing light trail across the screen.
+                    b. Particle bursts are triggered on click and when hovering over skill headers.
+
+D. Interactive Sections
+
+        1. 3D Flip Cards for Projects: Project titles flip to reveal descriptions, tech stack details, and links. Only one card can be flipped at a time to maintain focus.
+
+        2. Accordion Skills Menu: Skills are organized into expandable categories for better readability and navigation.
 
 
+E. Hidden Easter Eggs
 
+        1. Terminal: Clicking the header name five times opens a fullscreen glass-style terminal. Commands include: help, projects, skills, and exit.
 
+        2. Hidden Sea Chart: Typing nautical in the terminal reveals a wave animation and a hidden sea chart with the alias “The Nautical One.”
 
+        3. Deep Sea Discovery: Clicking the footer text triggers an ASCII-art galleon animation with the signature: Captain on deck: The Nautical One.
 
+        4. Developer Console Message: A custom-styled greeting appears in the browser console.
+
+        5. Konami Code (Retro 8-Bit Mode): Entering the Konami Code transforms the entire site into a retro 8-bit style with pixel fonts and starfield background.
+
+        6. Flappy Bird Mini-Game: Typing 2004 in the terminal launches a playable Flappy Bird overlay, dynamically themed based on the current site mode.
+
+F. Technology Stack
+
+        1. Core: HTML5, CSS3, JavaScript (ES6)
+
+        2. Styling: Tailwind CSS (utility-first). All custom styles, animations, and glassmorphism effects are contained in a single <style> block.
+
+        3. Fonts:
+            a. Inter for body/UI text.
+            b. Fira Code for terminal and ASCII art.
+            c. Cinzel for nautical-themed easter eggs.
+            d. Orbitron for neon hacker mode.
+        4. Deployment: GitHub Pages.
+
+G. Code Structure
+
+        1. Single File: Entire project is contained within index.html for simplicity and portability.
+
+        2. Head Section: Meta tags, external assets (Tailwind, Google Fonts), and custom <style> block with keyframes and effects.
+
+        3. Body Section:
+            a. <header>: Fixed navigation bar.
+            b. <main class="flex">: Horizontal scroll container holding all sections (Hero, About, Projects, Skills, Contact).
+            c. <section class="page-section">: Each section styled to fill viewport width and height.
+            d. Hidden modals & overlays (Terminal, Sea Chart, Flappy Bird, Deep Sea Discovery) located at the end of the body.
+        4. Script Section:
+            a. Single <script> at the end of the body.
+            b. Wrapped in DOMContentLoaded for reliable execution.
+            c. Handles horizontal scrolling, navigation, mobile menu toggle, card flips, skills accordion, theme switching, sky chart rendering, particle effects, and all easter egg logic.
